@@ -17,7 +17,8 @@
   --secondary: #f1f5f9;
   --secondary-foreground: #0f172a;
   --muted: #f1f5f9;
-  --muted-foreground: #64748b;
+  /* Más oscuro que slate-500: mejor contraste sobre blanco + resaltados azules de la aurora (light). */
+  --muted-foreground: #334155;
   --accent: #0073fc;
   --accent-foreground: #ffffff;
   --destructive: #e11d48;

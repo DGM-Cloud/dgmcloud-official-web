@@ -68,7 +68,7 @@ export function Hero() {
             as="p"
             text={t('hero.eyebrow')}
             delay={90}
-            className="justify-center text-xs font-semibold uppercase tracking-[0.26em] text-muted-foreground"
+            className="justify-center text-xs font-semibold uppercase tracking-[0.26em] text-[#1e293b] dark:text-muted-foreground"
           />
         </div>
 
@@ -102,7 +102,7 @@ export function Hero() {
             as="p"
             text={t('hero.subtitle')}
             delay={70}
-            className="mx-auto max-w-xl justify-center px-1 text-base leading-relaxed text-muted-foreground md:px-0 md:text-lg lg:text-xl"
+            className="mx-auto max-w-xl justify-center px-1 text-base leading-relaxed text-[#1e293b] md:px-0 md:text-lg lg:text-xl dark:text-muted-foreground"
           />
         </div>
 
