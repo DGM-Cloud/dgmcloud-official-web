@@ -133,11 +133,11 @@ export const LANDING_AURORA_STOPS: readonly string[] = [
   '#090816',
 ];
 
-/** Misma geometría/peso que dark; sólo luminancia para tema claro. */
+/** Modo claro: cielo azul vibrante — más contraste y profundidad que el fondo blanco. */
 export const LIGHT_AURORA_STOPS: readonly string[] = [
-  '#b8dafb',
+  '#6ab4fa',
   SITE_BRAND_AURORA_HEX,
-  '#eef6ff',
+  '#c8e8ff',
 ];
 
 /** Halo de acento (modo oscuro — sync lib/site-brand). */
@@ -308,9 +308,11 @@ export const AuroraBackground = memo(function AuroraBackground() {
 
   const baseBackground = isLight
     ? `
-            radial-gradient(ellipse 110% 58% at 50% -16%, ${LIGHT_BRAND_RADIAL}, transparent 56%),
-            radial-gradient(ellipse 72% 42% at 92% 90%, rgba(0,115,252,0.048), transparent 52%),
-            #ffffff
+            radial-gradient(ellipse 160% 65% at 20% 0%, rgba(147,197,253,0.55), transparent 52%),
+            radial-gradient(ellipse 130% 60% at 85% 5%, rgba(186,220,255,0.45), transparent 50%),
+            radial-gradient(ellipse 100% 55% at 50% 100%, rgba(219,234,254,0.40), transparent 55%),
+            radial-gradient(ellipse 80% 45% at 10% 60%, rgba(167,210,255,0.25), transparent 50%),
+            linear-gradient(175deg, #dbeafe 0%, #eff6ff 30%, #f5f9ff 60%, #ffffff 100%)
           `
     : `
             radial-gradient(ellipse 110% 60% at 50% -18%, ${SITE_BRAND_RADIAL}, transparent 55%),
@@ -320,7 +322,7 @@ export const AuroraBackground = memo(function AuroraBackground() {
 
   const vignette =
     isLight
-      ? 'radial-gradient(ellipse 82% 72% at 50% 38%, transparent 0%, transparent 44%, rgba(148,163,184,0.14) 78%, rgba(248,250,252,0.94) 100%)'
+      ? 'radial-gradient(ellipse 100% 85% at 50% 45%, transparent 0%, transparent 50%, rgba(200,220,245,0.12) 80%, rgba(240,248,255,0.70) 100%)'
       : 'radial-gradient(ellipse 80% 70% at 50% 40%, transparent 0%, transparent 36%, rgba(4,14,18,0.45) 74%, rgba(0,0,0,0.84) 100%)';
 
   return (
@@ -331,15 +333,17 @@ export const AuroraBackground = memo(function AuroraBackground() {
     >
       <div className="absolute inset-0" style={{ background: baseBackground }} />
 
-      <div className="absolute inset-0 min-h-[100lvh]">
-        <AuroraInner
-          colorStops={isLight ? LIGHT_AURORA_STOPS : LANDING_AURORA_STOPS}
-          blend={0.52}
-          amplitude={0.92}
-          speed={2.4}
-          className="absolute inset-0 h-full min-h-[100lvh] w-full"
-        />
-      </div>
+      {!isLight && (
+        <div className="absolute inset-0 min-h-[100lvh]">
+          <AuroraInner
+            colorStops={LANDING_AURORA_STOPS}
+            blend={0.52}
+            amplitude={0.92}
+            speed={2.4}
+            className="absolute inset-0 h-full min-h-[100lvh] w-full"
+          />
+        </div>
+      )}
 
       <div
         className={`absolute inset-0 ${isLight ? 'opacity-[0.028]' : 'opacity-[0.035]'}`}

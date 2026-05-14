@@ -94,7 +94,7 @@
   body {
     @apply bg-transparent text-foreground;
     position: relative;
-    overflow-x: hidden;
+    overflow-x: clip;
     /* Grano + viñeta viven en PlasmaBackground (z-0), no aquí — evita tapar WebGL */
   }
 }
@@ -111,6 +111,9 @@
    * Works as a complement/replacement for the WebGL IridescentOverlay.
    */
   .cloud-iridescent {
+    /* padding-right compensa el letter-spacing negativo heredado del h1
+       (-0.06em) que reduce el layout box y corta el lado derecho de la D */
+    padding-right: 0.1em;
     background: conic-gradient(
       from var(--irid-angle, 0deg),
       #0073fc 0%,
@@ -126,6 +129,25 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: iridRotate 6s linear infinite;
+  }
+
+  /* Light mode: sin blancos para que el texto no desaparezca sobre fondo claro */
+  html:not(.dark) .cloud-iridescent {
+    padding-right: 0.1em;
+    background: conic-gradient(
+      from var(--irid-angle, 0deg),
+      #0073fc 0%,
+      #1e63d4 18%,
+      #003d99 32%,
+      #4da6ff 48%,
+      #0055cc 60%,
+      #1a4fbf 75%,
+      #2a85e8 88%,
+      #0073fc 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   @property --irid-angle {

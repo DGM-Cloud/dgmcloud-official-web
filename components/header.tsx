@@ -52,7 +52,7 @@ export function Header() {
   );
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-40 border-b border-border bg-background/75 backdrop-blur-md supports-[backdrop-filter]:bg-background/65 dark:bg-black/50 dark:supports-[backdrop-filter]:bg-black/35 dark:border-white/[0.08]">
+    <header className="fixed left-0 right-0 top-0 z-40 border-b border-border bg-[#eef6ff]/90 backdrop-blur-md supports-[backdrop-filter]:bg-[#eef6ff]/85 dark:bg-black/50 dark:supports-[backdrop-filter]:bg-black/35 dark:border-white/[0.08] border-[rgba(0,115,252,0.10)] dark:border-white/[0.08]">
       <div className="mx-auto flex min-h-14 max-w-6xl items-center justify-between gap-4 px-6 py-3 md:min-h-[4rem]">
         <motion.a
           href="#top"

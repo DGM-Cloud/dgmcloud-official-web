@@ -74,26 +74,29 @@ export function Hero() {
 
         {/* Main title */}
         <h1
-          className="mb-5 text-center font-black leading-none tracking-[-0.06em] md:mb-10"
+          className="mb-5 overflow-visible text-center font-black leading-none tracking-[-0.06em] md:mb-10"
           style={{ fontSize: 'clamp(3rem,11vw,10rem)' }}
         >
           <BlurText
             as="span"
             text="DGM"
             delay={120}
-            className="block w-full justify-center text-foreground"
+            className="block w-full justify-center text-[#0c1f3f] dark:text-foreground"
           />
           {/*
-            CLOUD — iridescent effect applied as a CSS animated background
-            that clips to the text. No wrapping container, no visible box.
+            CLOUD — el glow-pulse va en el wrapper (bloque completo), no en el
+            mismo elemento que background-clip:text. Así la capa de compositing
+            es de ancho completo y la D no queda cortada en su borde derecho.
           */}
-          <BlurText
-            as="span"
-            text="CLOUD"
-            delay={200}
-            segmentClassName="glow-pulse cloud-iridescent"
-            className="block w-full justify-center"
-          />
+          <span className="glow-pulse block w-full">
+            <BlurText
+              as="span"
+              text="CLOUD"
+              delay={200}
+              segmentClassName="cloud-iridescent"
+              className="block w-full justify-center"
+            />
+          </span>
         </h1>
 
         {/* Subtitle */}
