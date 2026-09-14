@@ -8,6 +8,7 @@ export const dictionaries = {
       services: 'Services',
       portfolio: 'Work',
       about: 'Approach',
+      team: 'Team',
       cta: 'Contact',
       menu: 'Menu',
       langEn: 'EN',
@@ -142,6 +143,41 @@ export const dictionaries = {
         },
       },
     },
+    team: {
+      kicker: 'Team',
+      title: 'The team that takes the problem to production',
+      subtitle:
+        'Five co-founders with complementary roles — product, architecture, development, and operations. The same people who understand the business need are the ones who design, build, and ship.',
+      line: '5 co-founders · one delivery team',
+      prev: 'Previous teammate',
+      next: 'Next teammate',
+      github: 'GitHub',
+      linkedin: 'LinkedIn',
+      portfolio: 'Portfolio',
+      photoPending: 'Photo coming soon',
+      members: {
+        diego: {
+          role: 'Co-founder · Web & Mobile Development',
+          bio: 'Designs and builds end-to-end digital products across web and mobile. Delivers with Flutter and Swift on mobile, and Angular, Java, Spring Boot, and PostgreSQL on the web. At DGM he owns cross-platform implementation so the solution works where the business actually operates.',
+        },
+        mario: {
+          role: 'Co-founder · Software & Business Solutions',
+          bio: 'Connects technology decisions to real operational needs. Combines development, analysis, and a business-oriented view so automation and software stay useful — not decorative. At DGM he keeps scope tied to outcomes: less friction, clearer processes, solutions the company can run.',
+        },
+        george: {
+          role: 'Co-founder · Frontend & Backend',
+          bio: 'Builds and ships full-stack systems with a strong backend and project-delivery focus. Has deployed cloud web services (VolunTrack on Render) and contributed technically to platforms like Amarhu. At DGM he owns the path from definition to production — organizing delivery so ownership stays clear end to end.',
+        },
+        gabriel: {
+          role: 'Co-founder · Software Architecture',
+          bio: 'Shapes product interfaces and system structure so what we ship can grow without breaking. Works with React and front-end architecture oriented to reliability and maintainability. At DGM he brings product-delivery experience from Laraigo to design and build client solutions with stronger structure.',
+        },
+        sebastian: {
+          role: 'Co-founder · Software Engineering & Product',
+          bio: 'Works across web platforms, backends, e-commerce, and applied AI when it improves operations. Measures good software by the outcome for the business — not by the stack alone. At DGM he leads the product and engineering lens: understand the business problem, then build software that creates value.',
+        },
+      },
+    },
     contact: {
       kicker: 'Contact',
       title: 'Tell us the business problem',
@@ -197,6 +233,7 @@ export const dictionaries = {
       services: 'Servicios',
       portfolio: 'Trabajo',
       about: 'Enfoque',
+      team: 'Equipo',
       cta: 'Contacto',
       menu: 'Menú',
       langEn: 'EN',
@@ -329,6 +366,41 @@ export const dictionaries = {
           title: 'Boom Tea',
           description: 'Sitio de marca para un negocio de bubble tea.',
           stack: 'Sitio de marca',
+        },
+      },
+    },
+    team: {
+      kicker: 'Equipo',
+      title: 'El equipo que lleva el problema a producción',
+      subtitle:
+        'Cinco cofundadores con roles complementarios: producto, arquitectura, desarrollo y operación. Quienes entienden la necesidad del negocio son los mismos que diseñan, construyen y ponen la solución en marcha.',
+      line: '5 cofundadores · un solo equipo de entrega',
+      prev: 'Integrante anterior',
+      next: 'Siguiente integrante',
+      github: 'GitHub',
+      linkedin: 'LinkedIn',
+      portfolio: 'Portafolio',
+      photoPending: 'Foto pendiente',
+      members: {
+        diego: {
+          role: 'Cofundador · Desarrollo Web & Mobile',
+          bio: 'Diseña y construye productos digitales de extremo a extremo en web y mobile. Entrega con Flutter y Swift en mobile, y Angular, Java, Spring Boot y PostgreSQL en web. En DGM se hace cargo de la implementación multiplataforma para que la solución funcione donde el negocio realmente opera.',
+        },
+        mario: {
+          role: 'Cofundador · Soluciones de Software & Negocio',
+          bio: 'Conecta las decisiones tecnológicas con necesidades operativas reales. Combina desarrollo, análisis y una visión de negocio para que la automatización y el software sean útiles — no decorativos. En DGM mantiene el alcance atado a resultados: menos fricción, procesos más claros y soluciones que la empresa pueda operar.',
+        },
+        george: {
+          role: 'Cofundador · Frontend & Backend',
+          bio: 'Construye y lleva a producción sistemas full stack, con foco en backend y en la gestión del proyecto. Ha desplegado servicios web en la nube (VolunTrack en Render) y aportado técnicamente en plataformas como Amarhu. En DGM se hace cargo del camino de la definición a producción — organizando la entrega para que el ownership se mantenga claro de punta a punta.',
+        },
+        gabriel: {
+          role: 'Cofundador · Arquitectura de Software',
+          bio: 'Define la estructura de interfaces y sistemas para que lo que se entrega pueda crecer sin romperse. Trabaja con React y arquitectura front-end orientada a confiabilidad y mantenimiento. En DGM aporta experiencia de entrega de producto desde Laraigo para diseñar y construir soluciones de cliente con más solidez.',
+        },
+        sebastian: {
+          role: 'Cofundador · Ingeniería de Software & Producto',
+          bio: 'Trabaja en plataformas web, backends, e-commerce e IA aplicada cuando mejora la operación. Mide el buen software por el resultado para el negocio — no por el stack por sí solo. En DGM lidera la mirada de producto e ingeniería: entender el problema de negocio y construir software que genere valor.',
         },
       },
     },

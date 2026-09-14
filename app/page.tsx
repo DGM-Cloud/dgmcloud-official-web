@@ -4,6 +4,7 @@ import { ServicesSection } from '@/components/services-section';
 import { FeaturesSection } from '@/components/features-section';
 import { ProcessSection } from '@/components/process-section';
 import { PortfolioSection } from '@/components/portfolio-section';
+import { TeamSection } from '@/components/team-section';
 import { ContactForm } from '@/components/contact-form';
 import { Footer } from '@/components/footer';
 import { SkipLink } from '@/components/skip-link';
@@ -21,6 +22,7 @@ export default function Home() {
         <PortfolioSection />
         <FeaturesSection />
         <ProcessSection />
+        <TeamSection />
         <ContactForm />
       </main>
       <Footer />
