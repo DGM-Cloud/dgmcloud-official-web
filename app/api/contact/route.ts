@@ -7,7 +7,15 @@ import { SITE_CONTACT_EMAIL } from '@/lib/contact-config';
 const contactBodySchema = z.object({
   name: z.string().trim().min(1).max(200),
   email: z.string().trim().email().max(320),
-  project: z.enum(['web', 'mobile', 'cloud', 'backend', 'other']),
+  project: z.enum([
+    'transformation',
+    'automation',
+    'custom',
+    'software',
+    'integration',
+    'analysis',
+    'other',
+  ]),
   message: z.string().trim().min(1).max(12000),
 });
 

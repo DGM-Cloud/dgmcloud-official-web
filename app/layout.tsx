@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { GlassCardGlow } from '@/components/ui/glass-card-glow'
-import { AuroraBackground } from '@/components/ui/aurora'
 import { ScrollProgressBar } from '@/components/ui/scroll-progress'
 import { AppProviders } from '@/components/app-providers'
+import { JsonLd } from '@/components/json-ld'
+import { SITE_URL } from '@/lib/site'
 import './globals.css'
 
 const geistSans = Geist({
@@ -20,30 +20,40 @@ const geistMono = Geist_Mono({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  themeColor: '#050505',
+  themeColor: '#ffffff',
 }
 
+const siteTitle = 'DGM Cloud | Transformación digital'
+const siteDescription =
+  'DGM Cloud hace que la tecnología trabaje para tu negocio. Transformación digital, automatización y soluciones a medida.'
+
 export const metadata: Metadata = {
-  title: 'DGM CLOUD | Elite Software Engineering',
-  description: 'Ultra-precision software engineering. Web, Mobile, Inventory Systems. Enterprise-grade solutions for the most demanding projects.',
-  generator: 'v0.app',
+  metadataBase: new URL(SITE_URL),
+  title: siteTitle,
+  description: siteDescription,
+  applicationName: 'DGM Cloud',
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es',
+    url: SITE_URL,
+    siteName: 'DGM Cloud',
+    title: siteTitle,
+    description: siteDescription,
+  },
+  twitter: {
+    card: 'summary',
+    title: siteTitle,
+    description: siteDescription,
+  },
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
   },
 }
 
@@ -54,16 +64,14 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      suppressHydrationWarning
+      lang="es"
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body className="font-sans min-h-[100dvh] bg-background antialiased text-foreground">
         <AppProviders>
+          <JsonLd />
           <ScrollProgressBar />
-          <AuroraBackground />
-          <GlassCardGlow />
-          <div className="relative z-10">{children}</div>
+          {children}
           {process.env.NODE_ENV === 'production' && <Analytics />}
         </AppProviders>
       </body>

@@ -1,5 +1,5 @@
 {
-  "name": "my-project",
+  "name": "dgmcloud-official-web",
   "version": "0.1.0",
   "private": true,
   "pnpm": {
@@ -20,8 +20,6 @@
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.564.0",
     "next": "16.2.6",
-    "next-themes": "^0.4.6",
-    "ogl": "^1.0.11",
     "react": "^19",
     "react-dom": "^19",
     "resend": "^6.12.3",

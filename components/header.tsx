@@ -1,176 +1,185 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { ArrowUpRight, MessageCircleMore } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Menu, X } from 'lucide-react';
 import { BrandLogoImg } from '@/components/brand-logo';
 import { useTranslations } from '@/lib/i18n/locale-context';
-import { SITE_BRAND_HEX } from '@/lib/site-brand';
-import { ThemeToggle } from '@/components/theme-toggle';
 
-const springInteract = { type: 'spring' as const, stiffness: 420, damping: 18 };
+const SECTION_IDS = ['services', 'portfolio', 'about'] as const;
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
   const { t, locale, setLocale } = useTranslations();
 
   const navItems = [
-    { labelKey: 'nav.services', href: '#services' },
-    { labelKey: 'nav.portfolio', href: '#portfolio' },
-    { labelKey: 'nav.about', href: '#about' },
+    { labelKey: 'nav.services' as const, href: '#services', id: 'services' },
+    { labelKey: 'nav.portfolio' as const, href: '#portfolio', id: 'portfolio' },
+    { labelKey: 'nav.about' as const, href: '#about', id: 'about' },
   ];
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => Boolean(el),
+    );
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]?.target.id) {
+          setActiveId(visible[0].target.id);
+        }
+      },
+      {
+        rootMargin: '-20% 0px -55% 0px',
+        threshold: [0.15, 0.35, 0.55],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isOpen]);
 
   const LangToggle = ({ className = '' }: { className?: string }) => (
     <div
-      className={`flex items-center gap-0.5 rounded-md border border-border bg-muted/65 p-0.5 backdrop-blur-sm dark:border-white/[0.08] dark:bg-black/40 dark:backdrop-blur-md ${className}`}
+      className={`inline-flex items-center rounded-lg border border-border bg-background p-0.5 ${className}`}
       role="group"
-      aria-label="Language"
+      aria-label={t('nav.langAria')}
     >
-      <button
-        type="button"
-        onClick={() => setLocale('en')}
-        className={`rounded px-2 py-1 text-[11px] font-semibold uppercase tracking-wide transition-colors ${
-          locale === 'en'
-            ? 'bg-foreground/[0.1] text-foreground dark:bg-white/[0.12] dark:text-white'
-            : 'text-muted-foreground hover:text-foreground dark:text-white/45 dark:hover:text-white/75'
-        }`}
-      >
-        {t('nav.langEn')}
-      </button>
-      <button
-        type="button"
-        onClick={() => setLocale('es')}
-        className={`rounded px-2 py-1 text-[11px] font-semibold uppercase tracking-wide transition-colors ${
-          locale === 'es'
-            ? 'bg-foreground/[0.1] text-foreground dark:bg-white/[0.12] dark:text-white'
-            : 'text-muted-foreground hover:text-foreground dark:text-white/45 dark:hover:text-white/75'
-        }`}
-      >
-        {t('nav.langEs')}
-      </button>
+      {(['en', 'es'] as const).map((code) => {
+        const active = locale === code;
+        return (
+          <button
+            key={code}
+            type="button"
+            onClick={() => setLocale(code)}
+            aria-pressed={active}
+            className={`min-h-8 rounded-md px-2.5 text-xs font-semibold uppercase tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+              active
+                ? 'bg-accent text-primary'
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            {code === 'en' ? t('nav.langEn') : t('nav.langEs')}
+          </button>
+        );
+      })}
     </div>
   );
 
-  return (
-    <header className="fixed left-0 right-0 top-0 z-40 border-b border-border bg-[#eef6ff]/90 backdrop-blur-md supports-[backdrop-filter]:bg-[#eef6ff]/85 dark:bg-black/50 dark:supports-[backdrop-filter]:bg-black/35 dark:border-white/[0.08] border-[rgba(0,115,252,0.10)] dark:border-white/[0.08]">
-      <div className="mx-auto flex min-h-14 max-w-6xl items-center justify-between gap-4 px-6 py-3 md:min-h-[4rem]">
-        <motion.a
-          href="#top"
-          initial={{ opacity: 0, x: -16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          whileHover={{ opacity: 0.92 }}
-          whileTap={{ scale: 0.98 }}
-          className="flex shrink-0 items-center text-left outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-          aria-label={t('nav.logoAria')}
-        >
-          <BrandLogoImg priority className="h-11 w-auto md:h-14" alt="" />
-        </motion.a>
+  const linkClass = (id: string) =>
+    `relative text-[13px] font-medium tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+      activeId === id
+        ? 'text-foreground'
+        : 'text-muted-foreground hover:text-foreground'
+    }`;
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item, i) => (
-            <motion.a
+  return (
+    <header
+      className={`sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] ${
+        scrolled
+          ? 'border-border bg-background/90 shadow-[0_1px_0_rgba(15,23,42,0.04)] backdrop-blur-md'
+          : 'border-border/70 bg-background/95 backdrop-blur-sm'
+      }`}
+    >
+      <div className="section-shell grid min-h-[4.25rem] grid-cols-[1fr_auto] items-center gap-3 py-3 md:grid-cols-[1fr_auto_1fr]">
+        <a
+          href="#top"
+          className="flex shrink-0 items-center justify-self-start outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          aria-label={t('nav.logoAria')}
+          onClick={() => setIsOpen(false)}
+        >
+          <BrandLogoImg priority alt="" />
+        </a>
+
+        <nav className="hidden items-center justify-center gap-1 md:flex" aria-label="Primary">
+          {navItems.map((item) => (
+            <a
               key={item.labelKey}
               href={item.href}
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
-              whileHover={{ color: SITE_BRAND_HEX }}
-              className="text-[13px] font-medium text-muted-foreground transition-none hover:text-primary dark:text-white/50"
+              className={`${linkClass(item.id)} rounded-md px-3 py-2`}
+              aria-current={activeId === item.id ? 'true' : undefined}
             >
               {t(item.labelKey)}
-            </motion.a>
+              <span
+                aria-hidden
+                className={`absolute inset-x-3 -bottom-0.5 h-px origin-left bg-primary transition-transform duration-200 ${
+                  activeId === item.id ? 'scale-x-100' : 'scale-x-0'
+                }`}
+              />
+            </a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center justify-self-end gap-3 md:flex">
           <LangToggle />
-          <ThemeToggle />
-          <motion.a
-            href="#contact"
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.45 }}
-            whileHover={{ y: -1, transition: springInteract }}
-            whileTap={{ scale: 0.97, transition: springInteract }}
-            className="btn-shimmer group relative inline-flex shrink-0 items-center gap-2 rounded-full border border-primary/35 bg-primary px-6 py-2.5 text-[13px] font-semibold tracking-[0.03em] text-primary-foreground shadow-[0_8px_28px_-5px_rgba(0,115,252,0.52),inset_0_1px_0_rgba(255,255,255,0.2)] dark:border-white/18 md:px-7"
-          >
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-x-4 top-0 h-px rounded-full bg-gradient-to-r from-transparent via-white/45 to-transparent"
-            />
-            <MessageCircleMore className="relative size-[0.95rem] shrink-0 opacity-95" aria-hidden />
-            <span className="relative">{t('nav.cta')}</span>
-            <ArrowUpRight
-              className="relative size-[0.82rem] shrink-0 opacity-90 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-px group-hover:-translate-y-px md:size-[0.9rem]"
-              aria-hidden
-            />
-          </motion.a>
+          <a href="#contact" className="btn-primary min-h-10 px-4 text-sm">
+            {t('nav.cta')}
+          </a>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <LangToggle />
-          <ThemeToggle />
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="rounded-md p-2 text-muted-foreground hover:text-foreground dark:text-white/60 dark:hover:text-white"
+        <div className="flex items-center justify-self-end gap-2 md:hidden">
+          <a href="#contact" className="btn-primary min-h-10 px-3.5 text-sm">
+            {t('nav.cta')}
+          </a>
+          <button
+            type="button"
+            onClick={() => setIsOpen((open) => !open)}
+            className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-border text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             aria-expanded={isOpen}
+            aria-controls="mobile-nav"
             aria-label={t('nav.menu')}
           >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d={
-                  isOpen
-                    ? 'M6 18L18 6M6 6l12 12'
-                    : 'M4 6h16M4 12h16M4 18h16'
-                }
-              />
-            </svg>
-          </motion.button>
+            {isOpen ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
+          </button>
         </div>
       </div>
 
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          className="border-t border-border bg-background/92 backdrop-blur-lg dark:border-white/[0.06] dark:bg-black/60 md:hidden"
-        >
-          <nav className="mx-auto max-w-6xl space-y-1 px-6 py-4">
-            {navItems.map((item) => (
-              <a
-                key={item.labelKey}
-                href={item.href}
-                className="block py-2 text-sm text-muted-foreground transition-colors hover:text-primary dark:text-white/50"
-                onClick={() => setIsOpen(false)}
-              >
-                {t(item.labelKey)}
-              </a>
-            ))}
-            <div className="pt-3">
-              <a
-                href="#contact"
-                className="btn-shimmer group relative flex w-full items-center justify-center gap-2 rounded-full border border-primary/35 bg-primary py-3.5 text-sm font-semibold tracking-wide text-primary-foreground shadow-[0_10px_32px_-8px_rgba(0,115,252,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] dark:border-white/18"
-                onClick={() => setIsOpen(false)}
-              >
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-6 top-0 h-px rounded-full bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                />
-                <MessageCircleMore className="size-[1rem] shrink-0 opacity-95" aria-hidden />
-                <span>{t('nav.cta')}</span>
-              </a>
-            </div>
-          </nav>
-        </motion.div>
-      )}
+      <div
+        id="mobile-nav"
+        className={`border-t border-border bg-background md:hidden ${isOpen ? '' : 'hidden'}`}
+      >
+        <nav className="section-shell space-y-1 py-4" aria-label="Mobile">
+          {navItems.map((item) => (
+            <a
+              key={item.labelKey}
+              href={item.href}
+              className={`block rounded-lg px-3 py-3 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                activeId === item.id
+                  ? 'bg-accent text-primary'
+                  : 'text-foreground hover:bg-muted'
+              }`}
+              aria-current={activeId === item.id ? 'true' : undefined}
+              onClick={() => setIsOpen(false)}
+            >
+              {t(item.labelKey)}
+            </a>
+          ))}
+          <div className="border-t border-border px-1 pt-4">
+            <LangToggle />
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }
