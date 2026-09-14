@@ -43,14 +43,10 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    let next: Locale = defaultLocale;
     if (stored === 'es' || stored === 'en') {
-      next = stored;
-    } else if (typeof navigator !== 'undefined') {
-      next = navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en';
+      setLocaleState(stored);
+      document.documentElement.lang = stored;
     }
-    setLocaleState(next);
-    document.documentElement.lang = next;
   }, []);
 
   const setLocale = useCallback((l: Locale) => {
