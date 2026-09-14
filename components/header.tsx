@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { BrandLogoImg } from '@/components/brand-logo';
 import { useTranslations } from '@/lib/i18n/locale-context';
 
-const SECTION_IDS = ['services', 'portfolio', 'about'] as const;
+const SECTION_IDS = ['services', 'portfolio', 'about', 'team'] as const;
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +17,7 @@ export function Header() {
     { labelKey: 'nav.services' as const, href: '#services', id: 'services' },
     { labelKey: 'nav.portfolio' as const, href: '#portfolio', id: 'portfolio' },
     { labelKey: 'nav.about' as const, href: '#about', id: 'about' },
+    { labelKey: 'nav.team' as const, href: '#team', id: 'team' },
   ];
 
   useEffect(() => {

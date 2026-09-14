@@ -13,6 +13,7 @@ export function Footer() {
     { labelKey: 'nav.services' as const, href: '#services' },
     { labelKey: 'nav.portfolio' as const, href: '#portfolio' },
     { labelKey: 'nav.about' as const, href: '#about' },
+    { labelKey: 'nav.team' as const, href: '#team' },
     { labelKey: 'footer.contact' as const, href: '#contact' },
   ];
 
