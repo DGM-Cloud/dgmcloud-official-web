@@ -7,7 +7,7 @@ export function Hero() {
 
   return (
     <section id="top" className="scroll-mt-24">
-      <div className="hero-shell flex min-h-[58vh] flex-col items-start justify-center py-20 md:min-h-[64vh] md:py-24 lg:min-h-[68vh] lg:py-28">
+      <div className="hero-shell flex min-h-[72vh] flex-col items-start justify-center py-24 md:min-h-[80vh] md:py-28 lg:min-h-[calc(100svh-4.25rem)] lg:py-32">
         <p className="section-kicker mb-5">{t('hero.eyebrow')}</p>
         <h1 className="max-w-5xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-[3.5rem] md:leading-[1.12] lg:text-[3.75rem]">
           {t('hero.title')}
