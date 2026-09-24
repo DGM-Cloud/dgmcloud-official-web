@@ -170,7 +170,7 @@ export const dictionaries = {
         },
         gabriel: {
           role: 'Co-founder · Software Architecture',
-          bio: 'Shapes product interfaces and system structure so what we ship can grow without breaking. Works with React and front-end architecture oriented to reliability and maintainability. At DGM he brings product-delivery experience from Laraigo to design and build client solutions with stronger structure.',
+          bio: 'Shapes system structure so what we ship can grow without breaking. Works across software architecture — frontend, backend, deployment, and databases — oriented to reliability and maintainability. At DGM he designs and builds client solutions with stronger structure.',
         },
         sebastian: {
           role: 'Co-founder · Software Engineering & Product',
@@ -396,7 +396,7 @@ export const dictionaries = {
         },
         gabriel: {
           role: 'Cofundador · Arquitectura de Software',
-          bio: 'Define la estructura de interfaces y sistemas para que lo que se entrega pueda crecer sin romperse. Trabaja con React y arquitectura front-end orientada a confiabilidad y mantenimiento. En DGM aporta experiencia de entrega de producto desde Laraigo para diseñar y construir soluciones de cliente con más solidez.',
+          bio: 'Define la estructura de sistemas para que lo que se entrega pueda crecer sin romperse. Trabaja arquitectura de software en general — frontend, backend, despliegue y base de datos — orientada a confiabilidad y mantenimiento. En DGM diseña y construye soluciones de cliente con más solidez estructural.',
         },
         sebastian: {
           role: 'Cofundador · Ingeniería de Software & Producto',
