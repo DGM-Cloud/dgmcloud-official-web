@@ -161,6 +161,11 @@ export const dictionaries = {
             'Sales system for neighborhood grocery stores: quick sales, products, inventory, and cash shifts.',
           stack: 'Web system',
         },
+        maja: {
+          title: 'Maja Calzados',
+          description: 'Brand website for a shoe store in Lince: collections, real models, and orders via WhatsApp.',
+          stack: 'Brand website',
+        },
       },
     },
     team: {
@@ -408,6 +413,11 @@ export const dictionaries = {
           description:
             'Sistema de ventas para bodegas: ventas rápidas, productos, inventario y turnos de caja.',
           stack: 'Sistema web',
+        },
+        maja: {
+          title: 'Maja Calzados',
+          description: 'Sitio de marca para una tienda de calzados en Lince: colecciones, modelos reales y pedidos por WhatsApp.',
+          stack: 'Sitio de marca',
         },
       },
     },

@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { useReducedMotion } from 'framer-motion';
 import { useTranslations } from '@/lib/i18n/locale-context';
 
-const PROJECT_SLUGS = ['moreCorporation', 'boomTea', 'peludito', 'chelero', 'fiadito'] as const;
+const PROJECT_SLUGS = ['moreCorporation', 'boomTea', 'peludito', 'chelero', 'fiadito', 'maja'] as const;
 type ProjectSlug = (typeof PROJECT_SLUGS)[number];
 
 const PROJECT_URL: Record<ProjectSlug, string> = {
@@ -15,6 +15,7 @@ const PROJECT_URL: Record<ProjectSlug, string> = {
   peludito: 'https://dgm-cloud.github.io/peludito/dashboard/',
   chelero: 'https://dgm-cloud.github.io/chelero/',
   fiadito: 'https://dgm-cloud.github.io/fiadito/',
+  maja: 'https://diegohlz.github.io/maja-calzados/',
 };
 
 /** Capturas en /public/portfolio (WebP, ~1024 px de ancho). */
@@ -24,6 +25,7 @@ const PROJECT_IMAGE: Record<ProjectSlug, string> = {
   peludito: '/portfolio/peludito.webp',
   chelero: '/portfolio/chelero.webp',
   fiadito: '/portfolio/fiadito.webp',
+  maja: '/portfolio/maja.webp',
 };
 
 const PROJECT_BADGE: Record<ProjectSlug, string> = {
@@ -32,6 +34,7 @@ const PROJECT_BADGE: Record<ProjectSlug, string> = {
   peludito: 'portfolio.badgeSystem',
   chelero: 'portfolio.badgeSystem',
   fiadito: 'portfolio.badgeSystem',
+  maja: 'portfolio.badgeWeb',
 };
 
 const AUTOPLAY_MS = 5000;
