@@ -49,19 +49,19 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-muted">
       <div className="section-shell py-12 md:py-16">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-2 md:text-left lg:grid-cols-4">
           <div>
             <a
               href="#top"
               className="mb-4 inline-flex outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               aria-label={t('nav.logoAria')}
             >
-              <BrandLogoImg alt="" />
+              <BrandLogoImg alt="" className="max-md:object-center" />
             </a>
-            <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+            <p className="mx-auto max-w-xs text-sm leading-relaxed text-muted-foreground md:mx-0">
               {t('footer.tagline')}
             </p>
-            <p className="mt-2 max-w-xs text-xs leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-2 max-w-xs text-xs leading-relaxed text-muted-foreground md:mx-0">
               {t('footer.descriptor')}
             </p>
           </div>
@@ -112,7 +112,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-border pt-6">
-          <p className="text-sm text-muted-foreground">{t('footer.rights')}</p>
+          <p className="text-center text-sm text-muted-foreground md:text-left">{t('footer.rights')}</p>
         </div>
       </div>
     </footer>

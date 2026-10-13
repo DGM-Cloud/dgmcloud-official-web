@@ -128,7 +128,7 @@ export function PortfolioSection() {
             <p className="section-lede mt-4">{t('portfolio.subtitle')}</p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="hidden items-center gap-2 md:flex">
             <button
               type="button"
               onClick={() => go(active - 1)}
