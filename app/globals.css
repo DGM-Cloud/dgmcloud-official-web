@@ -22,8 +22,34 @@
   --border: #e2e8f0;
   --input: #e2e8f0;
   --ring: #0073fc;
+  --primary-hover: #0066e0;
   --radius: 0.75rem;
 }
+
+.dark {
+  --background: #0b1220;
+  --foreground: #e2e8f0;
+  --card: #0f172a;
+  --card-foreground: #e2e8f0;
+  --popover: #0f172a;
+  --popover-foreground: #e2e8f0;
+  --primary: #4d97fd;
+  --primary-foreground: #0b1220;
+  --secondary: #1e293b;
+  --secondary-foreground: #e2e8f0;
+  --muted: #131d33;
+  --muted-foreground: #94a3b8;
+  --accent: #10213d;
+  --accent-foreground: #e2e8f0;
+  --destructive: #f87171;
+  --destructive-foreground: #0b1220;
+  --border: #1e293b;
+  --input: #2a3850;
+  --ring: #4d97fd;
+  --primary-hover: #74adfd;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -56,6 +82,11 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    --tw-ring-offset-color: var(--background);
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   html {
@@ -78,7 +109,7 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#0066e0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-(--primary-hover) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50;
   }
 
   .btn-secondary {
