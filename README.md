@@ -1,6 +1,6 @@
 # DGM Cloud — sitio oficial
 
-Landing page de [dgm.cloud](https://dgm.cloud): transformación digital, automatización y soluciones a medida.
+Landing page de [dgmcloud.dev](https://www.dgmcloud.dev): transformación digital, automatización y soluciones a medida.
 
 ## Stack
 
@@ -22,9 +22,9 @@ pnpm dev
 | Variable | Uso |
 | --- | --- |
 | `RESEND_API_KEY` | Clave de Resend para enviar el formulario |
-| `CONTACT_TO_EMAIL` | Destinatario (por defecto `contact@dgm.cloud`) |
+| `CONTACT_TO_EMAIL` | Destinatario (por defecto `ventas@dgmcloud.dev`) |
 | `CONTACT_FROM_EMAIL` | Remitente verificado en Resend |
-| `NEXT_PUBLIC_SITE_URL` | URL canónica (por defecto `https://dgm.cloud`) |
+| `NEXT_PUBLIC_SITE_URL` | URL canónica (por defecto `https://www.dgmcloud.dev`) |
 
 ## Estructura
 

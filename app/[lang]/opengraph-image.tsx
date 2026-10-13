@@ -43,7 +43,7 @@ export default async function OpengraphImage({
           </div>
           <div style={{ display: 'flex', fontSize: 30, color: '#475569' }}>{dict.hero.eyebrow}</div>
         </div>
-        <div style={{ display: 'flex', fontSize: 26, color: '#64748b' }}>dgm.cloud</div>
+        <div style={{ display: 'flex', fontSize: 26, color: '#64748b' }}>dgmcloud.dev</div>
       </div>
     ),
     size,
