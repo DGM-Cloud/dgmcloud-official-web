@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { BrandLogoImg } from '@/components/brand-logo';
 import { useTranslations } from '@/lib/i18n/locale-context';
+import { localePath } from '@/lib/i18n/routing';
 
 const SECTION_IDS = ['services', 'portfolio', 'about', 'team'] as const;
 
@@ -11,7 +12,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const { t, locale, setLocale } = useTranslations();
+  const { t, locale } = useTranslations();
 
   const navItems = [
     { labelKey: 'nav.services' as const, href: '#services', id: 'services' },
@@ -70,19 +71,19 @@ export function Header() {
       {(['en', 'es'] as const).map((code) => {
         const active = locale === code;
         return (
-          <button
+          <a
             key={code}
-            type="button"
-            onClick={() => setLocale(code)}
-            aria-pressed={active}
-            className={`min-h-8 rounded-md px-2.5 text-xs font-semibold uppercase tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+            href={localePath(code)}
+            hrefLang={code}
+            aria-current={active ? 'page' : undefined}
+            className={`inline-flex min-h-8 items-center rounded-md px-2.5 text-xs font-semibold uppercase tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
               active
                 ? 'bg-accent text-primary'
                 : 'text-muted-foreground hover:text-foreground'
             }`}
           >
             {code === 'en' ? t('nav.langEn') : t('nav.langEs')}
-          </button>
+          </a>
         );
       })}
     </div>

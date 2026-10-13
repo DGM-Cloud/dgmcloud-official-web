@@ -94,6 +94,10 @@ export function TeamSection() {
                   <img
                     src={member.photo}
                     alt={member.name}
+                    width={810}
+                    height={1080}
+                    loading="lazy"
+                    decoding="async"
                     className="absolute inset-0 h-full w-full object-cover object-top"
                   />
                 ) : (
