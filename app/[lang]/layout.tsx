@@ -71,9 +71,6 @@ export async function generateMetadata({ params }: LangParams): Promise<Metadata
       title,
       description,
     },
-    icons: {
-      icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
-    },
   }
 }
 
