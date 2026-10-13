@@ -79,7 +79,7 @@ function buildEmailParts(input: z.infer<typeof contactBodySchema>) {
   };
 
   const html = `
-    <h2>Nuevo mensaje desde dgm.cloud</h2>
+    <h2>Nuevo mensaje desde dgmcloud.dev</h2>
     <p><strong>Nombre:</strong> ${safe.name}</p>
     <p><strong>Email:</strong> ${safe.email}</p>
     <p><strong>Tipo de proyecto:</strong> ${safe.project}</p>
@@ -88,7 +88,7 @@ function buildEmailParts(input: z.infer<typeof contactBodySchema>) {
   `.trim();
 
   const text = [
-    'Nuevo mensaje desde dgm.cloud',
+    'Nuevo mensaje desde dgmcloud.dev',
     '',
     `Nombre: ${name}`,
     `Email: ${email}`,
@@ -142,7 +142,7 @@ export async function POST(request: Request) {
       from,
       to: [to],
       replyTo: payload.email,
-      subject: `[dgm.cloud] Contacto · ${payload.project} · ${singleLine(payload.name).slice(0, 72)}`,
+      subject: `[dgmcloud.dev] Contacto · ${payload.project} · ${singleLine(payload.name).slice(0, 72)}`,
       html,
       text,
     });
