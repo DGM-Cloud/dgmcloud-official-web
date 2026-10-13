@@ -28,6 +28,7 @@ export function ContactForm() {
     email: '',
     project: '',
     message: '',
+    website: '',
   });
   const [status, setStatus] = useState<
     'idle' | 'loading' | 'success' | 'error' | 'invalid'
@@ -68,7 +69,7 @@ export function ContactForm() {
       }
 
       setStatus('success');
-      setFormData({ name: '', email: '', project: '', message: '' });
+      setFormData({ name: '', email: '', project: '', message: '', website: '' });
       setTimeout(() => setStatus('idle'), 4000);
     } catch {
       setStatus('error');
@@ -95,6 +96,19 @@ export function ContactForm() {
           onSubmit={handleSubmit}
           className="space-y-5 rounded-xl border border-border bg-card p-6 md:p-8"
         >
+          <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+            <label htmlFor="contact-website">Website</label>
+            <input
+              id="contact-website"
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           <div>
             <label htmlFor="contact-name" className="field-label">
               {t('contact.labelName')}

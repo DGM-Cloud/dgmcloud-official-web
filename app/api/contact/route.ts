@@ -17,7 +17,48 @@ const contactBodySchema = z.object({
     'other',
   ]),
   message: z.string().trim().min(1).max(12000),
+  /** Honeypot: oculto para personas, los bots suelen rellenarlo. */
+  website: z.string().optional(),
 });
+
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+/** Por instancia: en serverless cada instancia tiene su propio contador. */
+const recentSubmissions = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const hits = (recentSubmissions.get(ip) ?? []).filter(
+    (t) => now - t < RATE_LIMIT_WINDOW_MS,
+  );
+  if (hits.length >= RATE_LIMIT_MAX) {
+    recentSubmissions.set(ip, hits);
+    return true;
+  }
+  hits.push(now);
+  recentSubmissions.set(ip, hits);
+
+  if (recentSubmissions.size > 5000) {
+    for (const [key, times] of recentSubmissions) {
+      if (times.every((t) => now - t >= RATE_LIMIT_WINDOW_MS)) {
+        recentSubmissions.delete(key);
+      }
+    }
+  }
+  return false;
+}
+
+function clientIp(request: Request): string {
+  return (
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('x-real-ip')?.trim() ||
+    'unknown'
+  );
+}
+
+function singleLine(text: string): string {
+  return text.replace(/[\r\n]+/g, ' ');
+}
 
 function escapeHtml(text: string): string {
   return text
@@ -80,6 +121,14 @@ export async function POST(request: Request) {
   }
 
   const payload = parsed.data;
+  if (payload.website) {
+    return NextResponse.json({ ok: true, id: null });
+  }
+
+  if (isRateLimited(clientIp(request))) {
+    return NextResponse.json({ ok: false, error: 'rate_limited' }, { status: 429 });
+  }
+
   const to = process.env.CONTACT_TO_EMAIL?.trim() || SITE_CONTACT_EMAIL;
   const from =
     process.env.CONTACT_FROM_EMAIL?.trim() ||
@@ -93,7 +142,7 @@ export async function POST(request: Request) {
       from,
       to: [to],
       replyTo: payload.email,
-      subject: `[dgm.cloud] Contacto · ${payload.project} · ${payload.name.slice(0, 72)}`,
+      subject: `[dgm.cloud] Contacto · ${payload.project} · ${singleLine(payload.name).slice(0, 72)}`,
       html,
       text,
     });
