@@ -1,4 +1,4 @@
-import { SITE_CONTACT_EMAIL } from '@/lib/contact-config';
+import { SITE_CONTACT_EMAIL, SITE_WHATSAPP_NUMBER } from '@/lib/contact-config';
 import { dictionaries, type Locale } from '@/lib/i18n/dictionaries';
 import { localePath } from '@/lib/i18n/routing';
 import { SITE_URL } from '@/lib/site';
@@ -10,6 +10,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
     name: 'DGM Cloud',
     url: new URL(localePath(locale), SITE_URL).toString(),
     email: SITE_CONTACT_EMAIL,
+    telephone: `+${SITE_WHATSAPP_NUMBER}`,
     inLanguage: locale,
     description: dictionaries[locale].seo.description,
     sameAs: [

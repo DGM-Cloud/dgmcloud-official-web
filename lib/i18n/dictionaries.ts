@@ -155,6 +155,12 @@ export const dictionaries = {
             'Management system for liquor stores: in-store and delivery sales, inventory, promotions, cash register, and CRM.',
           stack: 'Web system',
         },
+        fiadito: {
+          title: 'Fiadito',
+          description:
+            'Sales system for neighborhood grocery stores: quick sales, products, inventory, and cash shifts.',
+          stack: 'Web system',
+        },
       },
     },
     team: {
@@ -197,6 +203,8 @@ export const dictionaries = {
       title: 'Tell us the business problem',
       subtitle: 'What is getting in the way today, and what would be better. A short note is enough.',
       emailHint: 'Or write to us directly',
+      whatsappAria: 'Message us on WhatsApp',
+      whatsappMessage: 'Hi DGM Cloud, I would like to talk about a project.',
       labelName: 'Name',
       labelEmail: 'Email',
       labelProject: 'What this is about',
@@ -395,6 +403,12 @@ export const dictionaries = {
             'Sistema de gestión para licorerías: ventas en tienda y delivery, inventario, promociones, caja y CRM.',
           stack: 'Sistema web',
         },
+        fiadito: {
+          title: 'Fiadito',
+          description:
+            'Sistema de ventas para bodegas: ventas rápidas, productos, inventario y turnos de caja.',
+          stack: 'Sistema web',
+        },
       },
     },
     team: {
@@ -437,6 +451,8 @@ export const dictionaries = {
       title: 'Cuéntanos el problema de negocio',
       subtitle: 'Qué está trabando el trabajo hoy y qué tendría que mejorar. Con una nota corta alcanza.',
       emailHint: 'O escríbenos directo',
+      whatsappAria: 'Escríbenos por WhatsApp',
+      whatsappMessage: 'Hola DGM Cloud, quiero conversar sobre un proyecto.',
       labelName: 'Nombre',
       labelEmail: 'Email',
       labelProject: 'De qué se trata',
