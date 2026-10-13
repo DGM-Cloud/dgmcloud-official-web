@@ -2,11 +2,7 @@
 
 import Image from 'next/image';
 
-export const BRAND_LOGO_LIGHT = '/logo.png';
-export const BRAND_LOGO_DARK = '/logo1.png';
-
-/** @deprecated Light-only site — use BRAND_LOGO_LIGHT */
-export const BRAND_LOGO_PATH = BRAND_LOGO_LIGHT;
+export const BRAND_LOGO_LIGHT = '/logo.webp';
 
 type BrandLogoImgProps = {
   className?: string;

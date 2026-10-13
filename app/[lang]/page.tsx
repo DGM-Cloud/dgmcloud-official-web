@@ -8,13 +8,11 @@ import { TeamSection } from '@/components/team-section';
 import { ContactForm } from '@/components/contact-form';
 import { Footer } from '@/components/footer';
 import { SkipLink } from '@/components/skip-link';
-import { DocumentMeta } from '@/components/document-meta';
 
 export default function Home() {
   return (
     <>
       <SkipLink />
-      <DocumentMeta />
       <Header />
       <main id="main" className="relative min-h-screen bg-background">
         <Hero />
