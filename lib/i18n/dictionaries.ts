@@ -149,6 +149,12 @@ export const dictionaries = {
             'Management system for veterinary clinics: appointments, patients, vaccines, billing, grooming, and hospitalization.',
           stack: 'Web system',
         },
+        chelero: {
+          title: 'Chelero',
+          description:
+            'Management system for liquor stores: in-store and delivery sales, inventory, promotions, cash register, and CRM.',
+          stack: 'Web system',
+        },
       },
     },
     team: {
@@ -381,6 +387,12 @@ export const dictionaries = {
           title: 'Peludito',
           description:
             'Sistema de gestión para veterinarias: citas, pacientes, vacunas, caja, grooming y hospitalización.',
+          stack: 'Sistema web',
+        },
+        chelero: {
+          title: 'Chelero',
+          description:
+            'Sistema de gestión para licorerías: ventas en tienda y delivery, inventario, promociones, caja y CRM.',
           stack: 'Sistema web',
         },
       },

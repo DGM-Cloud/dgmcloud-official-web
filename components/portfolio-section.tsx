@@ -6,13 +6,14 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { useReducedMotion } from 'framer-motion';
 import { useTranslations } from '@/lib/i18n/locale-context';
 
-const PROJECT_SLUGS = ['moreCorporation', 'boomTea', 'peludito'] as const;
+const PROJECT_SLUGS = ['moreCorporation', 'boomTea', 'peludito', 'chelero'] as const;
 type ProjectSlug = (typeof PROJECT_SLUGS)[number];
 
 const PROJECT_URL: Record<ProjectSlug, string> = {
   moreCorporation: 'https://morecorporation.pe/',
   boomTea: 'https://boomteaperu.com/wp/',
   peludito: 'https://dgm-cloud.github.io/peludito/dashboard/',
+  chelero: 'https://dgm-cloud.github.io/chelero/',
 };
 
 /** Capturas en /public/portfolio (WebP, ~1024 px de ancho). */
@@ -20,12 +21,14 @@ const PROJECT_IMAGE: Record<ProjectSlug, string> = {
   moreCorporation: '/portfolio/morecorporation.webp',
   boomTea: '/portfolio/boomtea.webp',
   peludito: '/portfolio/peludito.webp',
+  chelero: '/portfolio/chelero.webp',
 };
 
 const PROJECT_BADGE: Record<ProjectSlug, string> = {
   moreCorporation: 'portfolio.badgeWeb',
   boomTea: 'portfolio.badgeWeb',
   peludito: 'portfolio.badgeSystem',
+  chelero: 'portfolio.badgeSystem',
 };
 
 const AUTOPLAY_MS = 5000;
