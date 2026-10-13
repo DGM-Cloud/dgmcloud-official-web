@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { BrandLogoImg } from '@/components/brand-logo';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { useTranslations } from '@/lib/i18n/locale-context';
 import { localePath } from '@/lib/i18n/routing';
 
@@ -134,6 +135,7 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center justify-self-end gap-3 md:flex">
+          <ThemeToggle />
           <LangToggle />
           <a href="#contact" className="btn-primary min-h-10 px-4 text-sm">
             {t('nav.cta')}
@@ -144,6 +146,7 @@ export function Header() {
           <a href="#contact" className="btn-primary min-h-10 px-3.5 text-sm">
             {t('nav.cta')}
           </a>
+          <ThemeToggle />
           <button
             type="button"
             onClick={() => setIsOpen((open) => !open)}
