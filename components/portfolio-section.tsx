@@ -1,6 +1,5 @@
 'use client';
 
-import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { useTranslations } from '@/lib/i18n/locale-context';
@@ -13,44 +12,23 @@ const PROJECT_URL: Record<ProjectSlug, string> = {
   boomTea: 'https://boomteaperu.com/wp/',
 };
 
-function mshotsThumbnailUrl(siteUrl: string, width = 720) {
-  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(siteUrl)}?w=${width}`;
-}
+/** Capturas en /public/portfolio (WebP, ~1024 px de ancho). */
+const PROJECT_IMAGE: Record<ProjectSlug, string> = {
+  moreCorporation: '/portfolio/morecorporation.webp',
+  boomTea: '/portfolio/boomtea.webp',
+};
 
-function PortfolioPreview({ siteUrl, alt }: { siteUrl: string; alt: string }) {
-  const { t } = useTranslations();
-  const hostname = useMemo(() => {
-    try {
-      return new URL(siteUrl).hostname;
-    } catch {
-      return siteUrl;
-    }
-  }, [siteUrl]);
-
-  const thumbSrc = useMemo(() => mshotsThumbnailUrl(siteUrl), [siteUrl]);
-  const [broken, setBroken] = useState(false);
-
+function PortfolioPreview({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="border-b border-border bg-muted">
-          <div className="relative aspect-[16/10] w-full overflow-hidden bg-secondary">
-        {!broken ? (
-          <Image
-            src={thumbSrc}
-            alt={alt}
-            fill
-            className="object-cover object-top"
-            sizes="(max-width: 768px) 100vw, 512px"
-            unoptimized
-            onError={() => setBroken(true)}
-          />
-        ) : (
-          <div className="flex h-full min-h-[168px] flex-col items-center justify-center gap-2 px-6 text-center">
-            <p className="text-sm font-medium text-foreground">{hostname}</p>
-            <p className="max-w-[240px] text-xs leading-snug text-muted-foreground">
-              {t('portfolio.previewUnavailable')}
-            </p>
-          </div>
-        )}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-secondary">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover object-center"
+          sizes="(max-width: 768px) 100vw, 512px"
+        />
       </div>
     </div>
   );
@@ -78,7 +56,7 @@ export function PortfolioSection() {
               className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card outline-none transition-colors hover:border-primary/40 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
               <PortfolioPreview
-                siteUrl={PROJECT_URL[slug]}
+                src={PROJECT_IMAGE[slug]}
                 alt={t(`portfolio.projects.${slug}.title`)}
               />
               <div className="flex flex-1 flex-col gap-3 p-6">

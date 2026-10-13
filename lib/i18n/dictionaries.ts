@@ -127,7 +127,6 @@ export const dictionaries = {
       subtitle: 'Public websites we have shipped. A sample of our work, not DGM’s full catalogue.',
       badgeWeb: 'Website',
       visitSite: 'Visit website',
-      previewUnavailable: 'Preview unavailable — open the site from this card.',
       footnote: 'If you have a business process to improve, start there — not with a page type.',
       footnoteCta: 'Tell us about it',
       projects: {
@@ -353,7 +352,6 @@ export const dictionaries = {
         'Sitios públicos que hemos puesto en línea. Son una muestra de nuestro trabajo, no el catálogo completo de DGM.',
       badgeWeb: 'Sitio web',
       visitSite: 'Visitar sitio',
-      previewUnavailable: 'La vista previa no está disponible — abre el sitio desde esta tarjeta.',
       footnote: 'Si hay un proceso de negocio que mejorar, empecemos por ahí — no por un tipo de página.',
       footnoteCta: 'Cuéntanos',
       projects: {

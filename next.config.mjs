@@ -4,7 +4,7 @@ const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com${isDev ? " 'unsafe-eval'" : ''}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://s.wordpress.com https://*.wp.com",
+  "img-src 'self' data: blob:",
   "font-src 'self'",
   `connect-src 'self' https://va.vercel-scripts.com${isDev ? ' ws: wss:' : ''}`,
   "object-src 'none'",
