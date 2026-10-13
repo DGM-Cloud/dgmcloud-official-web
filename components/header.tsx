@@ -13,7 +13,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const { t, locale } = useTranslations();
+  const { t, locale, switchLocale } = useTranslations();
 
   const navItems = [
     { labelKey: 'nav.services' as const, href: '#services', id: 'services' },
@@ -76,6 +76,12 @@ export function Header() {
             key={code}
             href={localePath(code)}
             hrefLang={code}
+            onClick={(event) => {
+              if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+              event.preventDefault();
+              setIsOpen(false);
+              switchLocale(code);
+            }}
             aria-current={active ? 'page' : undefined}
             className={`inline-flex min-h-8 items-center rounded-md px-2.5 text-xs font-semibold uppercase tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
               active
