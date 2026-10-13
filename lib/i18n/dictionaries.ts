@@ -123,10 +123,13 @@ export const dictionaries = {
     },
     portfolio: {
       kicker: 'Published work',
-      title: 'Selected sites in production',
-      subtitle: 'Public websites we have shipped. A sample of our work, not DGM’s full catalogue.',
+      title: 'Selected projects in production',
+      subtitle: 'Public projects we have shipped. A sample of our work, not DGM’s full catalogue.',
       badgeWeb: 'Website',
+      badgeSystem: 'Web system',
       visitSite: 'Visit website',
+      prev: 'Previous project',
+      next: 'Next project',
       footnote: 'If you have a business process to improve, start there — not with a page type.',
       footnoteCta: 'Tell us about it',
       projects: {
@@ -139,6 +142,12 @@ export const dictionaries = {
           title: 'Boom Tea',
           description: 'Brand website for a bubble-tea business.',
           stack: 'Brand website',
+        },
+        peludito: {
+          title: 'Peludito',
+          description:
+            'Management system for veterinary clinics: appointments, patients, vaccines, billing, grooming, and hospitalization.',
+          stack: 'Web system',
         },
       },
     },
@@ -347,11 +356,14 @@ export const dictionaries = {
     },
     portfolio: {
       kicker: 'Trabajo publicado',
-      title: 'Sitios seleccionados en producción',
+      title: 'Proyectos seleccionados en producción',
       subtitle:
-        'Sitios públicos que hemos puesto en línea. Son una muestra de nuestro trabajo, no el catálogo completo de DGM.',
+        'Proyectos públicos que hemos puesto en línea. Son una muestra de nuestro trabajo, no el catálogo completo de DGM.',
       badgeWeb: 'Sitio web',
+      badgeSystem: 'Sistema web',
       visitSite: 'Visitar sitio',
+      prev: 'Proyecto anterior',
+      next: 'Proyecto siguiente',
       footnote: 'Si hay un proceso de negocio que mejorar, empecemos por ahí — no por un tipo de página.',
       footnoteCta: 'Cuéntanos',
       projects: {
@@ -364,6 +376,12 @@ export const dictionaries = {
           title: 'Boom Tea',
           description: 'Sitio de marca para un negocio de bubble tea.',
           stack: 'Sitio de marca',
+        },
+        peludito: {
+          title: 'Peludito',
+          description:
+            'Sistema de gestión para veterinarias: citas, pacientes, vacunas, caja, grooming y hospitalización.',
+          stack: 'Sistema web',
         },
       },
     },
