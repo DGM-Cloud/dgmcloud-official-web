@@ -15,6 +15,7 @@ export const dictionaries = {
       langEs: 'ES',
       logoAria: 'Go to top — DGM Cloud',
       langAria: 'Language',
+      themeAria: 'Toggle light or dark theme',
       skipToContent: 'Skip to content',
     },
     hero: {
@@ -267,6 +268,7 @@ export const dictionaries = {
       langEs: 'ES',
       logoAria: 'Ir al inicio — DGM Cloud',
       langAria: 'Idioma',
+      themeAria: 'Cambiar entre tema claro y oscuro',
       skipToContent: 'Saltar al contenido',
     },
     hero: {
