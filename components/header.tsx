@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { BrandLogoImg } from '@/components/brand-logo';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useTranslations } from '@/lib/i18n/locale-context';
 import { localePath } from '@/lib/i18n/routing';
 
-const SECTION_IDS = ['services', 'portfolio', 'about', 'team'] as const;
+const SECTION_IDS = ['portfolio', 'services', 'about', 'team'] as const;
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +16,8 @@ export function Header() {
   const { t, locale, switchLocale } = useTranslations();
 
   const navItems = [
-    { labelKey: 'nav.services' as const, href: '#services', id: 'services' },
     { labelKey: 'nav.portfolio' as const, href: '#portfolio', id: 'portfolio' },
+    { labelKey: 'nav.services' as const, href: '#services', id: 'services' },
     { labelKey: 'nav.about' as const, href: '#about', id: 'about' },
     { labelKey: 'nav.team' as const, href: '#team', id: 'team' },
   ];
@@ -65,7 +65,7 @@ export function Header() {
 
   const LangToggle = ({ className = '' }: { className?: string }) => (
     <div
-      className={`inline-flex items-center rounded-lg border border-border bg-background p-0.5 ${className}`}
+      className={`inline-flex items-center rounded-full border border-[#0a2044]/12 bg-[#f3f6fa] p-0.5 ${className}`}
       role="group"
       aria-label={t('nav.langAria')}
     >
@@ -83,10 +83,10 @@ export function Header() {
               switchLocale(code);
             }}
             aria-current={active ? 'page' : undefined}
-            className={`inline-flex min-h-8 items-center rounded-md px-2.5 text-xs font-semibold uppercase tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+            className={`inline-flex min-h-8 items-center rounded-full px-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6] ${
               active
-                ? 'bg-accent text-primary'
-                : 'text-muted-foreground hover:text-foreground'
+                ? 'bg-white text-[#075cf6] shadow-sm'
+                : 'text-[#40536c] hover:text-[#071a38]'
             }`}
           >
             {code === 'en' ? t('nav.langEn') : t('nav.langEs')}
@@ -97,28 +97,28 @@ export function Header() {
   );
 
   const linkClass = (id: string) =>
-    `relative text-[13px] font-medium tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+    `relative text-[13px] font-medium tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6] ${
       activeId === id
-        ? 'text-foreground'
-        : 'text-muted-foreground hover:text-foreground'
+        ? 'text-[#075cf6]'
+        : 'text-[#40536c] hover:text-[#071a38]'
     }`;
 
   return (
     <header
       className={`sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] ${
         scrolled
-          ? 'border-border bg-background/90 shadow-[0_1px_0_rgba(15,23,42,0.04)] backdrop-blur-md'
-          : 'border-border/70 bg-background/95 backdrop-blur-sm'
+          ? 'border-[#0a2044]/10 bg-white/92 shadow-[0_12px_30px_rgba(7,26,56,0.08)] backdrop-blur-xl'
+          : 'border-[#0a2044]/10 bg-white'
       }`}
     >
-      <div className="section-shell grid min-h-[4.25rem] grid-cols-[1fr_auto] items-center gap-3 py-3 md:grid-cols-[1fr_auto_1fr]">
+      <div className="hero-shell grid min-h-[4.75rem] grid-cols-[1fr_auto] items-center gap-3 py-3 md:grid-cols-[1fr_auto_1fr]">
         <a
           href="#top"
-          className="flex shrink-0 items-center justify-self-start outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          className="flex shrink-0 items-center justify-self-start outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6]"
           aria-label={t('nav.logoAria')}
           onClick={() => setIsOpen(false)}
         >
-          <BrandLogoImg priority alt="" />
+          <BrandLogoImg priority alt="" variant="light" className="h-9 md:h-10" />
         </a>
 
         <nav className="hidden items-center justify-center gap-1 md:flex" aria-label="Primary">
@@ -132,7 +132,7 @@ export function Header() {
               {t(item.labelKey)}
               <span
                 aria-hidden
-                className={`absolute inset-x-3 -bottom-0.5 h-px origin-left bg-primary transition-transform duration-200 ${
+                className={`absolute inset-x-3 -bottom-0.5 h-0.5 origin-left bg-[#075cf6] transition-transform duration-200 ${
                   activeId === item.id ? 'scale-x-100' : 'scale-x-0'
                 }`}
               />
@@ -143,20 +143,21 @@ export function Header() {
         <div className="hidden items-center justify-self-end gap-3 md:flex">
           <ThemeToggle />
           <LangToggle />
-          <a href="#contact" className="btn-primary min-h-10 px-4 text-sm">
+          <a href="#contact" className="inline-flex min-h-10 items-center gap-2 rounded-full bg-[#075cf6] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#064dcc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6] focus-visible:ring-offset-2">
             {t('nav.cta')}
+            <ArrowUpRight className="size-3.5" aria-hidden />
           </a>
         </div>
 
         <div className="flex items-center justify-self-end gap-2 md:hidden">
-          <a href="#contact" className="btn-primary min-h-10 px-3.5 text-sm">
+          <a href="#contact" className="inline-flex min-h-10 items-center rounded-full bg-[#075cf6] px-4 text-sm font-semibold text-white">
             {t('nav.cta')}
           </a>
           <ThemeToggle />
           <button
             type="button"
             onClick={() => setIsOpen((open) => !open)}
-            className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg border border-border text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-[#0a2044]/15 text-[#071a38] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6]"
             aria-expanded={isOpen}
             aria-controls="mobile-nav"
             aria-label={t('nav.menu')}
@@ -168,7 +169,7 @@ export function Header() {
 
       <div
         id="mobile-nav"
-        className={`border-t border-border bg-background md:hidden ${isOpen ? '' : 'hidden'}`}
+        className={`border-t border-[#0a2044]/10 bg-white md:hidden ${isOpen ? '' : 'hidden'}`}
       >
         <nav className="section-shell space-y-1 py-4" aria-label="Mobile">
           {navItems.map((item) => (
@@ -177,8 +178,8 @@ export function Header() {
               href={item.href}
               className={`block rounded-lg px-3 py-3 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                 activeId === item.id
-                  ? 'bg-accent text-primary'
-                  : 'text-foreground hover:bg-muted'
+                  ? 'bg-[#eaf2ff] text-[#075cf6]'
+                  : 'text-[#40536c] hover:bg-[#f3f6fa] hover:text-[#071a38]'
               }`}
               aria-current={activeId === item.id ? 'true' : undefined}
               onClick={() => setIsOpen(false)}
@@ -186,7 +187,7 @@ export function Header() {
               {t(item.labelKey)}
             </a>
           ))}
-          <div className="border-t border-border px-1 pt-4">
+          <div className="border-t border-[#0a2044]/10 px-1 pt-4">
             <LangToggle />
           </div>
         </nav>
