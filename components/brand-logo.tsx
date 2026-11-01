@@ -10,14 +10,31 @@ type BrandLogoImgProps = {
   /** Alt vacío cuando el enlace padre ya tiene aria-label (evita duplicar lectura). */
   alt?: string;
   priority?: boolean;
+  variant?: 'light' | 'dark';
 };
 
 export function BrandLogoImg({
   className = '',
   alt = '',
   priority = false,
+  variant = 'light',
 }: BrandLogoImgProps) {
   const imageClass = `h-9 w-[7.5rem] object-contain object-left md:h-11 md:w-[9.5rem] ${className}`;
+
+  if (variant === 'dark') {
+    return (
+      <Image
+        src={BRAND_LOGO_DARK}
+        alt={alt}
+        width={180}
+        height={112}
+        sizes="(max-width: 768px) 140px, 176px"
+        className={imageClass}
+        priority={priority}
+      />
+    );
+  }
+
   return (
     <>
       <Image

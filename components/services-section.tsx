@@ -1,96 +1,61 @@
 'use client';
 
-import { Code2, GitBranch, RefreshCw, Search, Workflow, Wrench } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useTranslations } from '@/lib/i18n/locale-context';
 
-const PILLARS = [
-  { id: 'digital' as const, icon: RefreshCw },
-  { id: 'automation' as const, icon: Workflow },
-  { id: 'custom' as const, icon: Wrench },
-] as const;
-
-const CAPABILITIES = [
-  { id: 'software' as const, icon: Code2 },
-  { id: 'integration' as const, icon: GitBranch },
-  { id: 'consulting' as const, icon: Search },
+const SERVICES = [
+  { id: 'digital', capabilities: ['software', 'consulting'] },
+  { id: 'automation', capabilities: ['integration'] },
+  { id: 'custom', capabilities: ['software', 'integration'] },
 ] as const;
 
 export function ServicesSection() {
   const { t } = useTranslations();
+  const reduce = useReducedMotion();
 
   return (
-    <section id="services" className="scroll-mt-24 border-b border-border py-20 md:py-28">
+    <section id="services" className="scroll-mt-24 border-b border-[#0a2044]/15 bg-[#f3f6fa] py-20 md:py-28">
       <div className="section-shell">
-        <div className="mb-10 max-w-2xl md:mb-12">
-          <p className="section-kicker mb-3">{t('services.kicker')}</p>
-          <h2 className="section-title">{t('services.title')}</h2>
-          <p className="section-lede mt-4">{t('services.subtitle')}</p>
+        <div className="grid gap-8 md:grid-cols-[0.75fr_1.25fr] md:gap-14">
+          <div>
+            <p className="section-kicker mb-4">{t('services.kicker')}</p>
+            <h2 className="max-w-md text-[clamp(2.6rem,6vw,5rem)] font-[540] leading-[0.92] tracking-[-0.065em] text-[#071a38] text-balance">
+              {t('services.title')}
+            </h2>
+          </div>
+          <p className="max-w-2xl self-end text-base leading-7 text-[#29415f]/75 md:text-lg md:leading-8">
+            {t('services.subtitle')}
+          </p>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-border bg-card">
-          <div className="grid grid-cols-1 md:grid-cols-3">
-            {PILLARS.map(({ id, icon: Icon }, i) => (
-              <article
-                key={id}
-                className={[
-                  'flex h-full flex-col p-7 md:p-8',
-                  i < PILLARS.length - 1 ? 'border-b border-border md:border-b-0 md:border-r' : '',
-                ].join(' ')}
-              >
-                <div className="mb-6 flex items-center justify-between gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-lg bg-accent text-primary">
-                    <Icon className="size-5" aria-hidden />
-                  </div>
-                  <span className="font-mono text-xs font-semibold text-primary">
-                    {t(`expertise.${id}.label`)}
-                  </span>
-                </div>
-                <h3 className="mb-3 text-lg font-semibold tracking-tight text-foreground">
-                  {t(`expertise.${id}.title`)}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
+        <div className="mt-14 border-t border-[#0a2044]/25 md:mt-20">
+          {SERVICES.map(({ id, capabilities }, index) => (
+            <motion.article
+              key={id}
+              initial={reduce ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.45 }}
+              transition={{ duration: 0.45, delay: reduce ? 0 : index * 0.05 }}
+              className="group grid gap-5 border-b border-[#0a2044]/25 py-8 md:grid-cols-[4rem_minmax(13rem,.85fr)_minmax(18rem,1.15fr)_auto] md:items-start md:gap-8 md:py-10"
+            >
+              <span className="font-mono text-xs tracking-[0.15em] text-[#075cf6]">0{index + 1}</span>
+              <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[#071a38] md:text-3xl">
+                {t(`expertise.${id}.title`)}
+              </h3>
+              <div>
+                <p className="max-w-xl text-sm leading-6 text-[#29415f]/75 md:text-base md:leading-7">
                   {t(`expertise.${id}.body`)}
                 </p>
-              </article>
-            ))}
-          </div>
-
-          <div className="border-t border-border bg-muted/70">
-            <div className="border-b border-border px-7 py-5 md:px-8">
-              <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-                {t('services.howKicker')}
-              </p>
-              <p className="mt-1 max-w-lg text-sm leading-relaxed text-muted-foreground">
-                {t('services.howLabel')}
-              </p>
-            </div>
-
-            <ul className="grid grid-cols-1 md:grid-cols-3">
-              {CAPABILITIES.map(({ id, icon: Icon }, i) => (
-                <li
-                  key={id}
-                  className={[
-                    'flex gap-4 px-7 py-6 md:px-8',
-                    i < CAPABILITIES.length - 1
-                      ? 'border-b border-border md:border-b-0 md:border-r'
-                      : '',
-                  ].join(' ')}
-                >
-                  <div className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-md border border-border bg-card text-muted-foreground">
-                    <Icon className="size-3.5" aria-hidden />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium tracking-tight text-foreground">
-                      {t(`capabilities.${id}.title`)}
-                    </p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {t(`capabilities.${id}.body`)}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+                <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#51667e]">
+                  {capabilities.map((capability) => t(`capabilities.${capability}.title`)).join(' · ')}
+                </p>
+              </div>
+              <a href="#contact" aria-label={`${t(`expertise.${id}.title`)} — ${t('nav.cta')}`} className="flex size-11 items-center justify-center rounded-full border border-[#0a2044]/25 text-[#071a38] transition-all group-hover:border-[#075cf6] group-hover:bg-[#075cf6] group-hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6]">
+                <ArrowUpRight className="size-4" aria-hidden />
+              </a>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>
