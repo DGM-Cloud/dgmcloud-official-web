@@ -8,7 +8,6 @@ import { JsonLd } from '@/components/json-ld'
 import { SITE_URL } from '@/lib/site'
 import { dictionaries } from '@/lib/i18n/dictionaries'
 import { isLocale, localePath, locales, ogLocales } from '@/lib/i18n/routing'
-import { themeInitScript } from '@/lib/theme'
 import '../globals.css'
 
 const geistSans = Geist({
@@ -24,10 +23,7 @@ const geistMono = Geist_Mono({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0b1220' },
-  ],
+  themeColor: '#ffffff',
 }
 
 export const dynamicParams = false
@@ -89,14 +85,7 @@ export default async function RootLayout({
   if (!isLocale(lang)) notFound()
 
   return (
-    <html
-      lang={lang}
-      className={`${geistSans.variable} ${geistMono.variable}`}
-      suppressHydrationWarning
-    >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
+    <html lang={lang} className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="font-sans min-h-[100dvh] bg-background antialiased text-foreground">
         <AppProviders locale={lang}>
           <JsonLd locale={lang} />

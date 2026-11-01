@@ -26,31 +26,6 @@
   --radius: 0.75rem;
 }
 
-.dark {
-  --background: #0b1220;
-  --foreground: #e2e8f0;
-  --card: #0f172a;
-  --card-foreground: #e2e8f0;
-  --popover: #0f172a;
-  --popover-foreground: #e2e8f0;
-  --primary: #4d97fd;
-  --primary-foreground: #0b1220;
-  --secondary: #1e293b;
-  --secondary-foreground: #e2e8f0;
-  --muted: #131d33;
-  --muted-foreground: #94a3b8;
-  --accent: #10213d;
-  --accent-foreground: #e2e8f0;
-  --destructive: #f87171;
-  --destructive-foreground: #0b1220;
-  --border: #1e293b;
-  --input: #2a3850;
-  --ring: #4d97fd;
-  --primary-hover: #74adfd;
-}
-
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme inline {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -83,10 +58,6 @@
   * {
     @apply border-border outline-ring/50;
     --tw-ring-offset-color: var(--background);
-  }
-
-  html.dark {
-    color-scheme: dark;
   }
 
   html {

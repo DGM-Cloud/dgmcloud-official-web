@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { BrandLogoImg } from '@/components/brand-logo';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { useTranslations } from '@/lib/i18n/locale-context';
 import { localePath } from '@/lib/i18n/routing';
 
@@ -141,7 +140,6 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center justify-self-end gap-3 md:flex">
-          <ThemeToggle />
           <LangToggle />
           <a href="#contact" className="inline-flex min-h-10 items-center gap-2 rounded-full bg-[#075cf6] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#064dcc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6] focus-visible:ring-offset-2">
             {t('nav.cta')}
@@ -153,7 +151,6 @@ export function Header() {
           <a href="#contact" className="inline-flex min-h-10 items-center rounded-full bg-[#075cf6] px-4 text-sm font-semibold text-white">
             {t('nav.cta')}
           </a>
-          <ThemeToggle />
           <button
             type="button"
             onClick={() => setIsOpen((open) => !open)}
