@@ -3,16 +3,16 @@
 import { useTranslations } from '@/lib/i18n/locale-context';
 
 const TECHNOLOGIES = [
-  { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
-  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg' },
-  { name: 'Angular', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg' },
-  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
-  { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg' },
-  { name: 'Spring', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg' },
-  { name: 'Flutter', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg' },
-  { name: 'Swift', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swift/swift-original.svg' },
-  { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg' },
-  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
+  { name: 'React', icon: '/technology/react.svg' },
+  { name: 'Next.js', icon: '/technology/nextjs.svg' },
+  { name: 'Angular', icon: '/technology/angular.svg' },
+  { name: 'TypeScript', icon: '/technology/typescript.svg' },
+  { name: 'Java', icon: '/technology/java.svg' },
+  { name: 'Spring', icon: '/technology/spring.svg' },
+  { name: 'Flutter', icon: '/technology/flutter.svg' },
+  { name: 'Swift', icon: '/technology/swift.svg' },
+  { name: 'PostgreSQL', icon: '/technology/postgresql.svg' },
+  { name: 'Node.js', icon: '/technology/nodejs.svg' },
 ] as const;
 
 const MARQUEE_TECHNOLOGIES = [...TECHNOLOGIES, ...TECHNOLOGIES];
