@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, FileSearch, Lightbulb, PenTool, Rocket, Route } from 'lucide-react';
 import { useTranslations } from '@/lib/i18n/locale-context';
@@ -17,8 +17,25 @@ export function ProcessSection() {
   const { t } = useTranslations();
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
+  const tabListRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const current = STEPS[active] ?? STEPS[0];
   const CurrentIcon = current.icon;
+
+  useEffect(() => {
+    const tabList = tabListRef.current;
+    const activeTab = tabRefs.current[active];
+
+    if (!tabList || !activeTab || window.matchMedia('(min-width: 1024px)').matches) return;
+
+    const centeredLeft = activeTab.offsetLeft - (tabList.clientWidth - activeTab.offsetWidth) / 2;
+    const targetLeft = Math.min(Math.max(centeredLeft, 0), tabList.scrollWidth - tabList.clientWidth);
+
+    tabList.scrollTo({
+      left: targetLeft,
+      behavior: reduce ? 'auto' : 'smooth',
+    });
+  }, [active, reduce]);
 
   return (
     <section id="about" className="scroll-mt-24 overflow-hidden border-b border-[#0a2044]/10 bg-[#071a38] py-16 text-white md:py-28">
@@ -32,13 +49,16 @@ export function ProcessSection() {
         </div>
 
         <div className="mt-10 grid overflow-hidden rounded-[1.25rem] border border-white/12 bg-white/[0.035] sm:mt-14 sm:rounded-[1.5rem] lg:grid-cols-[.72fr_1.28fr] md:mt-18">
-          <div className="process-tabs border-b border-white/12 lg:border-b-0 lg:border-r" role="tablist" aria-label={t('process.kicker')}>
+          <div ref={tabListRef} className="process-tabs border-b border-white/12 lg:border-b-0 lg:border-r" role="tablist" aria-label={t('process.kicker')}>
             {STEPS.map((step, index) => {
               const selected = index === active;
               const Icon = step.icon;
               return (
                 <button
                   key={step.id}
+                  ref={(element) => {
+                    tabRefs.current[index] = element;
+                  }}
                   type="button"
                   onClick={() => setActive(index)}
                   role="tab"
