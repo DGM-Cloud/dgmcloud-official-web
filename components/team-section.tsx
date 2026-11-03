@@ -43,7 +43,7 @@ export function TeamSection() {
     .join('');
 
   return (
-    <section id="team" className="scroll-mt-24 border-b border-border bg-muted/40 py-20 md:py-28">
+    <section id="team" className="scroll-mt-24 border-b border-border bg-muted/40 py-16 md:py-28">
       <div className="section-shell">
         <div className="mb-10 flex flex-col gap-6 md:mb-14 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
@@ -78,7 +78,7 @@ export function TeamSection() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-border bg-card">
+        <div className="overflow-hidden rounded-[1.25rem] border border-border bg-card md:rounded-xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={member.id}
@@ -89,7 +89,7 @@ export function TeamSection() {
               className="grid grid-cols-1 md:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)]"
             >
               {/* Vertical portrait */}
-              <div className="relative aspect-[3/4] w-full bg-secondary md:aspect-auto md:min-h-[28rem] lg:min-h-[32rem]">
+              <div className="relative aspect-[5/4] w-full bg-secondary sm:aspect-[4/3] md:aspect-auto md:min-h-[28rem] lg:min-h-[32rem]">
                 {member.photo ? (
                   <img
                     src={member.photo}
@@ -111,18 +111,18 @@ export function TeamSection() {
               </div>
 
               {/* Info */}
-              <div className="flex flex-col justify-center px-6 py-8 sm:px-8 md:px-10 md:py-12 lg:px-12">
+              <div className="flex flex-col justify-center px-5 py-6 sm:px-8 sm:py-8 md:px-10 md:py-12 lg:px-12">
                 <p className="text-sm font-medium text-primary">
                   {t(`team.members.${member.id}.role`)}
                 </p>
                 <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
                   {member.name}
                 </h3>
-                <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground md:mt-5 md:text-base">
                   {t(`team.members.${member.id}.bio`)}
                 </p>
 
-                <div className="mt-8 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-2 md:mt-8">
                   <a
                     href={member.github}
                     target="_blank"
@@ -159,7 +159,7 @@ export function TeamSection() {
         </div>
 
         {/* Member rail */}
-        <div className="mt-6 flex flex-wrap gap-2" role="tablist" aria-label={t('team.title')}>
+        <div className="mobile-scrollbar-hidden -mx-5 mt-6 flex snap-x gap-2 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:overflow-visible md:px-0" role="tablist" aria-label={t('team.title')}>
           {teamMembers.map((item, i) => {
             const active = i === index;
             return (
@@ -169,7 +169,7 @@ export function TeamSection() {
                 role="tab"
                 aria-selected={active}
                 onClick={() => setIndex(i)}
-                className={`rounded-full px-3.5 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                className={`shrink-0 snap-start rounded-full px-3.5 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                   active
                     ? 'bg-primary text-primary-foreground'
                     : 'bg-background text-muted-foreground hover:bg-muted hover:text-foreground'

@@ -50,18 +50,18 @@ function ProjectCard({ slug, index }: { slug: ProjectSlug; index: number }) {
 
   return (
     <article
-      className="group project-slide lg:grid lg:grid-cols-[1.35fr_.65fr] lg:items-center"
+      className="group project-slide rounded-[1.25rem] border border-[#0a2044]/10 bg-white p-3 shadow-[0_18px_50px_rgba(7,26,56,.08)] lg:grid lg:grid-cols-[1.35fr_.65fr] lg:items-center lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none"
       style={{ width: `${100 / PROJECT_SLUGS.length}%`, flexBasis: `${100 / PROJECT_SLUGS.length}%` }}
     >
       <ProjectPreview slug={slug} />
-      <div className="mt-7 lg:mt-0 lg:pl-10">
+      <div className="mt-6 px-1 pb-2 lg:mt-0 lg:px-0 lg:pb-0 lg:pl-10">
         <div className="mb-3 flex items-center gap-3">
           <span className="font-mono text-xs text-[#075cf6]">{String(index + 1).padStart(2, '0')}</span>
           <span className="border-b border-[#075cf6]/30 pb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#52657c]">
             {t(`portfolio.projects.${slug}.stack`)}
           </span>
         </div>
-        <h3 className="text-3xl font-semibold tracking-[-0.045em] text-[#071a38] md:text-5xl">
+        <h3 className="text-[2rem] font-semibold leading-[1.02] tracking-[-0.045em] text-[#071a38] sm:text-3xl lg:text-5xl">
           {t(`portfolio.projects.${slug}.title`)}
         </h3>
         <p className="mt-3 max-w-xl text-sm leading-6 text-[#52657c] md:text-base">
@@ -71,7 +71,7 @@ function ProjectCard({ slug, index }: { slug: ProjectSlug; index: number }) {
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#075cf6] transition-colors hover:text-[#071a38]"
+          className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#075cf6] transition-colors hover:text-[#071a38] md:mt-7"
         >
           {t('portfolio.visitSite')} <ArrowUpRight className="size-4" aria-hidden />
         </a>
@@ -97,11 +97,11 @@ export function PortfolioSection() {
       style={{ position: 'relative' }}
     >
       <div className="project-sticky">
-        <div className="section-shell flex h-full flex-col py-12 md:py-14">
+        <div className="section-shell flex h-full flex-col py-14 md:py-14">
           <div className="mb-6 grid gap-4 md:grid-cols-[1fr_0.68fr] md:items-end">
             <div>
               <p className="section-kicker mb-3">{t('portfolio.kicker')}</p>
-              <h2 className="max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-balance md:text-5xl">
+              <h2 className="max-w-3xl text-[2.25rem] font-semibold leading-[1.03] tracking-[-0.045em] text-balance sm:text-4xl md:text-5xl">
                 {t('portfolio.title')}
               </h2>
             </div>
@@ -125,11 +125,11 @@ export function PortfolioSection() {
             </motion.div>
           </div>
 
-          <div className="mt-auto flex items-center gap-4 pt-7">
+          <div className="mt-auto flex items-center gap-3 pt-7 sm:gap-4">
             <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#60728a]">
               {t('portfolio.scrollHint')}
             </span>
-            <div className="h-px flex-1 overflow-hidden bg-[#0a2044]/12">
+            <div className="hidden h-px flex-1 overflow-hidden bg-[#0a2044]/12 md:block">
               <motion.div className="h-full origin-left bg-[#075cf6]" style={{ scaleX: progress }} />
             </div>
             <span className="font-mono text-[10px] text-[#60728a]">06 / 06</span>

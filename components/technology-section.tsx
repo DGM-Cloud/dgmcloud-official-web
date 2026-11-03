@@ -21,17 +21,17 @@ export function TechnologySection() {
   const { t } = useTranslations();
 
   return (
-    <section id="technology" className="overflow-hidden border-y border-[#0a2044]/10 bg-white py-16 md:py-20">
+    <section id="technology" className="overflow-hidden border-y border-[#0a2044]/10 bg-white py-14 md:py-20">
       <div className="section-shell text-center">
         <p className="section-kicker mb-3">{t('technology.kicker')}</p>
-        <h2 className="mx-auto max-w-3xl text-3xl font-semibold tracking-[-0.045em] text-[#071a38] md:text-5xl">{t('technology.title')}</h2>
+        <h2 className="mx-auto max-w-3xl text-[2.15rem] font-semibold leading-[1.04] tracking-[-0.045em] text-[#071a38] sm:text-4xl md:text-5xl">{t('technology.title')}</h2>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-[#52657c] md:text-base">{t('technology.subtitle')}</p>
       </div>
 
-      <div className="tech-marquee-mask mt-12 border-y border-[#0a2044]/10 py-6" role="region" aria-label={t('technology.stackAria')}>
+      <div className="tech-marquee-mask mt-9 border-y border-[#0a2044]/10 py-5 sm:mt-12 sm:py-6" role="region" aria-label={t('technology.stackAria')}>
         <ul className="tech-marquee-track flex w-max items-center">
           {MARQUEE_TECHNOLOGIES.map((technology, index) => (
-            <li key={`${technology.name}-${index}`} className="flex min-w-[11rem] shrink-0 items-center gap-3 px-7 md:min-w-[13rem] md:px-9" aria-hidden={index >= TECHNOLOGIES.length}>
+            <li key={`${technology.name}-${index}`} className="flex min-w-[9.5rem] shrink-0 items-center gap-2.5 px-5 sm:min-w-[11rem] sm:gap-3 sm:px-7 md:min-w-[13rem] md:px-9" aria-hidden={index >= TECHNOLOGIES.length}>
               <img src={technology.icon} alt="" width="42" height="42" loading="lazy" className="size-9 object-contain md:size-11" />
               <span className="text-base font-semibold tracking-[-0.02em] text-[#17304f] md:text-lg">{technology.name}</span>
             </li>

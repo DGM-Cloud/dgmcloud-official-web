@@ -89,8 +89,8 @@ export function ContactForm() {
   };
 
   return (
-    <section id="contact" className="scroll-mt-24 py-20 md:py-28">
-      <div className="section-shell grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+    <section id="contact" className="scroll-mt-24 py-16 md:py-28">
+      <div className="section-shell grid grid-cols-1 gap-9 sm:gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
         <div>
           <p className="section-kicker mb-3">{t('contact.kicker')}</p>
           <h2 className="section-title">{t('contact.title')}</h2>
@@ -116,7 +116,7 @@ export function ContactForm() {
 
         <form
           onSubmit={handleSubmit}
-          className="space-y-5 rounded-xl border border-border bg-card p-6 md:p-8"
+          className="space-y-5 rounded-[1.25rem] border border-border bg-card p-5 sm:p-6 md:rounded-xl md:p-8"
         >
           <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
             <label htmlFor="contact-website">Website</label>

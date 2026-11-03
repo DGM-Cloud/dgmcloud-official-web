@@ -110,17 +110,17 @@ export function Header() {
           : 'border-[#0a2044]/10 bg-white'
       }`}
     >
-      <div className="hero-shell grid min-h-[4.75rem] grid-cols-[1fr_auto] items-center gap-3 py-3 md:grid-cols-[1fr_auto_1fr]">
+      <div className="hero-shell grid min-h-[4.25rem] grid-cols-[1fr_auto] items-center gap-2 py-2.5 md:min-h-[4.75rem] md:gap-3 md:py-3 lg:grid-cols-[1fr_auto_1fr]">
         <a
           href="#top"
           className="flex shrink-0 items-center justify-self-start outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6]"
           aria-label={t('nav.logoAria')}
           onClick={() => setIsOpen(false)}
         >
-          <BrandLogoImg priority alt="" variant="light" className="h-9 md:h-10" />
+          <BrandLogoImg priority alt="" variant="light" className="h-8 w-[6.75rem] md:h-10 md:w-[9.5rem]" />
         </a>
 
-        <nav className="hidden items-center justify-center gap-1 md:flex" aria-label="Primary">
+        <nav className="hidden items-center justify-center gap-1 lg:flex" aria-label="Primary">
           {navItems.map((item) => (
             <a
               key={item.labelKey}
@@ -139,7 +139,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center justify-self-end gap-3 md:flex">
+        <div className="hidden items-center justify-self-end gap-3 lg:flex">
           <LangToggle />
           <a href="#contact" className="inline-flex min-h-10 items-center gap-2 rounded-full bg-[#075cf6] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#064dcc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6] focus-visible:ring-offset-2">
             {t('nav.cta')}
@@ -147,8 +147,8 @@ export function Header() {
           </a>
         </div>
 
-        <div className="flex items-center justify-self-end gap-2 md:hidden">
-          <a href="#contact" className="inline-flex min-h-10 items-center rounded-full bg-[#075cf6] px-4 text-sm font-semibold text-white">
+        <div className="flex items-center justify-self-end gap-2 lg:hidden">
+          <a href="#contact" className="hidden min-h-10 items-center rounded-full bg-[#075cf6] px-3.5 text-[0.78rem] font-semibold text-white min-[360px]:inline-flex">
             {t('nav.cta')}
           </a>
           <button
@@ -166,7 +166,7 @@ export function Header() {
 
       <div
         id="mobile-nav"
-        className={`border-t border-[#0a2044]/10 bg-white md:hidden ${isOpen ? '' : 'hidden'}`}
+        className={`border-t border-[#0a2044]/10 bg-white lg:hidden ${isOpen ? '' : 'hidden'}`}
       >
         <nav className="section-shell space-y-1 py-4" aria-label="Mobile">
           {navItems.map((item) => (
@@ -185,7 +185,17 @@ export function Header() {
             </a>
           ))}
           <div className="border-t border-[#0a2044]/10 px-1 pt-4">
-            <LangToggle />
+            <div className="flex items-center justify-between gap-3">
+              <LangToggle />
+              <a
+                href="#contact"
+                onClick={() => setIsOpen(false)}
+                className="inline-flex min-h-10 items-center gap-2 rounded-full bg-[#075cf6] px-4 text-sm font-semibold text-white"
+              >
+                {t('nav.cta')}
+                <ArrowUpRight className="size-3.5" aria-hidden />
+              </a>
+            </div>
           </div>
         </nav>
       </div>
