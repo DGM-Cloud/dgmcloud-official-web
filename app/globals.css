@@ -882,7 +882,7 @@
   .process-hub-core { width: 2.1rem; height: 2.1rem; }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .project-scroll { height: auto; }
   .project-sticky {
     position: relative;
@@ -891,16 +891,87 @@
     min-height: 0;
     overflow: visible;
   }
-  .project-track-viewport { overflow: visible; }
+  .project-track-viewport {
+    margin-inline: -1.25rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 0.25rem 1.25rem 1.25rem;
+    scroll-padding-inline: 1.25rem;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .project-track-viewport::-webkit-scrollbar { display: none; }
   .project-track {
-    width: 100%;
-    min-width: 0;
+    width: max-content !important;
+    min-width: max-content !important;
     height: auto;
-    flex-direction: column;
-    gap: 4rem;
+    flex-direction: row;
+    gap: 1rem;
     transform: none !important;
   }
-  .project-slide { width: 100% !important; flex: 0 0 auto !important; padding-right: 0; }
+  .project-slide {
+    width: min(86vw, 42rem) !important;
+    flex: 0 0 min(86vw, 42rem) !important;
+    padding-right: 0;
+    scroll-snap-align: start;
+  }
+
+  .process-tabs {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .process-tabs::-webkit-scrollbar { display: none; }
+  .process-tab {
+    width: min(78vw, 18rem) !important;
+    min-width: min(78vw, 18rem);
+    flex: 0 0 min(78vw, 18rem);
+    border-right: 1px solid rgb(255 255 255 / 0.1);
+    border-bottom: 0 !important;
+    scroll-snap-align: start;
+  }
+  .process-stage-panel::after {
+    content: '';
+    position: absolute;
+    inset: auto 1.5rem 1.5rem auto;
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid rgb(22 132 255 / 0.16);
+    border-radius: 9999px;
+  }
+
+  .mobile-scrollbar-hidden {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mobile-scrollbar-hidden::-webkit-scrollbar { display: none; }
+}
+
+@media (max-width: 359px) {
+  .section-shell,
+  .hero-shell {
+    padding-inline: 1rem;
+  }
+
+  .project-track-viewport {
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    scroll-padding-inline: 1rem;
+  }
+
+  .project-slide {
+    width: calc(100vw - 2rem) !important;
+    flex-basis: calc(100vw - 2rem) !important;
+  }
+
+  .mobile-scrollbar-hidden {
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

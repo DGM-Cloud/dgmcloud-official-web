@@ -11,12 +11,12 @@ export function BusinessProblemsSection() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="border-b border-[#0a2044]/10 bg-white py-20 md:py-28">
+    <section className="border-b border-[#0a2044]/10 bg-white py-16 md:py-28">
       <div className="section-shell">
         <div className="grid gap-8 border-b border-[#0a2044]/18 pb-10 lg:grid-cols-[1.05fr_.95fr] lg:items-end lg:gap-16">
           <div>
             <p className="section-kicker mb-4">{t('problems.kicker')}</p>
-            <h2 className="max-w-3xl text-[clamp(2.6rem,5vw,4.8rem)] font-[560] leading-[0.96] tracking-[-0.055em] text-[#071a38] text-balance">
+            <h2 className="max-w-3xl text-[clamp(2.25rem,10vw,4.8rem)] font-[560] leading-[0.98] tracking-[-0.05em] text-[#071a38] text-balance sm:tracking-[-0.055em]">
               {t('problems.title')}
             </h2>
           </div>
@@ -36,13 +36,13 @@ export function BusinessProblemsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.42, delay: reduce ? 0 : index * 0.05 }}
-              className={`group py-9 md:p-10 ${index % 2 === 0 ? 'md:border-r md:border-[#0a2044]/14 md:pl-0' : 'md:pr-0'} ${index < 2 ? 'border-b border-[#0a2044]/14' : index === 2 ? 'border-b border-[#0a2044]/14 md:border-b-0' : ''}`}
+              className={`group py-7 sm:py-9 md:p-10 ${index % 2 === 0 ? 'md:border-r md:border-[#0a2044]/14 md:pl-0' : 'md:pr-0'} ${index < 2 ? 'border-b border-[#0a2044]/14' : index === 2 ? 'border-b border-[#0a2044]/14 md:border-b-0' : ''}`}
             >
               <div className="flex items-center justify-between gap-4">
                 <span className="font-mono text-xs tracking-[0.16em] text-[#075cf6]">0{index + 1}</span>
                 <span className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#075cf6]">{t(`problems.${id}.solution`)}</span>
               </div>
-              <h3 className="mt-8 max-w-lg text-2xl font-semibold tracking-[-0.04em] text-[#071a38] md:text-3xl">{t(`problems.${id}.title`)}</h3>
+              <h3 className="mt-6 max-w-lg text-[1.4rem] font-semibold leading-tight tracking-[-0.035em] text-[#071a38] sm:mt-8 sm:text-2xl md:text-3xl">{t(`problems.${id}.title`)}</h3>
               <p className="mt-3 max-w-lg text-sm leading-6 text-[#52657c] md:text-base md:leading-7">{t(`problems.${id}.body`)}</p>
               <p className="mt-7 flex items-center gap-2 text-sm font-semibold text-[#071a38]">
                 <CheckCircle2 className="size-4 text-[#075cf6]" aria-hidden />
