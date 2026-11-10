@@ -64,7 +64,7 @@ export function Header() {
 
   const LangToggle = ({ className = '' }: { className?: string }) => (
     <div
-      className={`inline-flex items-center rounded-full border border-[#0a2044]/12 bg-[#f3f6fa] p-0.5 ${className}`}
+      className={`inline-flex items-center rounded-full border border-line bg-cream-2/70 p-0.5 ${className}`}
       role="group"
       aria-label={t('nav.langAria')}
     >
@@ -82,10 +82,10 @@ export function Header() {
               switchLocale(code);
             }}
             aria-current={active ? 'page' : undefined}
-            className={`inline-flex min-h-8 items-center rounded-full px-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6] ${
+            className={`inline-flex min-h-8 items-center rounded-full px-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep ${
               active
-                ? 'bg-white text-[#075cf6] shadow-sm'
-                : 'text-[#40536c] hover:text-[#071a38]'
+                ? 'bg-night text-gold-light shadow-sm'
+                : 'text-ink-soft hover:text-ink'
             }`}
           >
             {code === 'en' ? t('nav.langEn') : t('nav.langEs')}
@@ -96,24 +96,36 @@ export function Header() {
   );
 
   const linkClass = (id: string) =>
-    `relative text-[13px] font-medium tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6] ${
+    `relative text-[13px] font-medium tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep ${
       activeId === id
-        ? 'text-[#075cf6]'
-        : 'text-[#40536c] hover:text-[#071a38]'
+        ? 'text-ink'
+        : 'text-ink-soft hover:text-ink'
     }`;
 
   return (
+    <>
+      <div className="relative z-40 bg-night text-gold-light" role="note">
+        <div className="hero-shell flex min-h-8 items-center justify-center gap-3 py-1.5 text-center text-[0.62rem] font-semibold uppercase leading-4 tracking-[0.22em] sm:text-[0.66rem]">
+          <span className="xm-sparkle text-gold" aria-hidden />
+          <span>{t('season.greeting')}</span>
+          <span className="hidden text-gold/60 sm:inline" aria-hidden>
+            ·
+          </span>
+          <span className="hidden text-cream/70 sm:inline">DGM Cloud</span>
+          <span className="xm-sparkle text-gold" aria-hidden />
+        </div>
+      </div>
     <header
       className={`sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] ${
         scrolled
-          ? 'border-[#0a2044]/10 bg-white/92 shadow-[0_12px_30px_rgba(7,26,56,0.08)] backdrop-blur-xl'
-          : 'border-[#0a2044]/10 bg-white'
+          ? 'border-gold/40 bg-cream/90 shadow-[0_12px_30px_rgba(6,20,42,0.08)] backdrop-blur-xl'
+          : 'border-line bg-cream'
       }`}
     >
       <div className="hero-shell grid min-h-[4.25rem] grid-cols-[1fr_auto] items-center gap-2 py-2.5 md:min-h-[4.75rem] md:gap-3 md:py-3 lg:grid-cols-[1fr_auto_1fr]">
         <a
           href="#top"
-          className="flex shrink-0 items-center justify-self-start outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6]"
+          className="flex shrink-0 items-center justify-self-start outline-none focus-visible:ring-2 focus-visible:ring-gold-deep"
           aria-label={t('nav.logoAria')}
           onClick={() => setIsOpen(false)}
         >
@@ -131,7 +143,7 @@ export function Header() {
               {t(item.labelKey)}
               <span
                 aria-hidden
-                className={`absolute inset-x-3 -bottom-0.5 h-0.5 origin-left bg-[#075cf6] transition-transform duration-200 ${
+                className={`absolute inset-x-3 -bottom-0.5 h-px origin-left bg-gold-deep transition-transform duration-300 ${
                   activeId === item.id ? 'scale-x-100' : 'scale-x-0'
                 }`}
               />
@@ -141,20 +153,20 @@ export function Header() {
 
         <div className="hidden items-center justify-self-end gap-3 lg:flex">
           <LangToggle />
-          <a href="#contact" className="inline-flex min-h-10 items-center gap-2 rounded-full bg-[#075cf6] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#064dcc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6] focus-visible:ring-offset-2">
+          <a href="#contact" className="xm-btn xm-btn-night min-h-10! px-5! text-[0.82rem]!">
             {t('nav.cta')}
-            <ArrowUpRight className="size-3.5" aria-hidden />
+            <ArrowUpRight className="size-3.5 text-gold" aria-hidden />
           </a>
         </div>
 
         <div className="flex items-center justify-self-end gap-2 lg:hidden">
-          <a href="#contact" className="hidden min-h-10 items-center rounded-full bg-[#075cf6] px-3.5 text-[0.78rem] font-semibold text-white min-[360px]:inline-flex">
+          <a href="#contact" className="xm-btn xm-btn-night hidden min-h-10! px-3.5! text-[0.78rem]! min-[360px]:inline-flex">
             {t('nav.cta')}
           </a>
           <button
             type="button"
             onClick={() => setIsOpen((open) => !open)}
-            className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-[#0a2044]/15 text-[#071a38] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6]"
+            className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-ink/15 bg-cream-2/60 text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep"
             aria-expanded={isOpen}
             aria-controls="mobile-nav"
             aria-label={t('nav.menu')}
@@ -166,17 +178,17 @@ export function Header() {
 
       <div
         id="mobile-nav"
-        className={`border-t border-[#0a2044]/10 bg-white lg:hidden ${isOpen ? '' : 'hidden'}`}
+        className={`border-t border-line bg-cream lg:hidden ${isOpen ? '' : 'hidden'}`}
       >
         <nav className="section-shell space-y-1 py-4" aria-label="Mobile">
           {navItems.map((item) => (
             <a
               key={item.labelKey}
               href={item.href}
-              className={`block rounded-lg px-3 py-3 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+              className={`block rounded-lg px-3 py-3 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep ${
                 activeId === item.id
-                  ? 'bg-[#eaf2ff] text-[#075cf6]'
-                  : 'text-[#40536c] hover:bg-[#f3f6fa] hover:text-[#071a38]'
+                  ? 'bg-cream-2 text-ink'
+                  : 'text-ink-soft hover:bg-cream-2 hover:text-ink'
               }`}
               aria-current={activeId === item.id ? 'true' : undefined}
               onClick={() => setIsOpen(false)}
@@ -184,21 +196,22 @@ export function Header() {
               {t(item.labelKey)}
             </a>
           ))}
-          <div className="border-t border-[#0a2044]/10 px-1 pt-4">
+          <div className="border-t border-line px-1 pt-4">
             <div className="flex items-center justify-between gap-3">
               <LangToggle />
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="inline-flex min-h-10 items-center gap-2 rounded-full bg-[#075cf6] px-4 text-sm font-semibold text-white"
+                className="xm-btn xm-btn-night min-h-10! px-4! text-sm!"
               >
                 {t('nav.cta')}
-                <ArrowUpRight className="size-3.5" aria-hidden />
+                <ArrowUpRight className="size-3.5 text-gold" aria-hidden />
               </a>
             </div>
           </div>
         </nav>
       </div>
     </header>
+    </>
   );
 }
