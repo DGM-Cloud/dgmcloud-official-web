@@ -23,22 +23,29 @@ function ProjectPreview({ slug }: { slug: ProjectSlug }) {
   const project = PROJECTS[slug];
 
   return (
-    <div className={`project-browser bg-gradient-to-br ${project.tone}`}>
-      <div className="project-browser-bar">
-        <span className="bg-[#ff6159]" />
-        <span className="bg-[#ffbd2e]" />
-        <span className="bg-[#28c941]" />
-        <div className="project-url">{new URL(project.url).hostname}</div>
-        <span className="ml-auto font-mono text-[10px] text-white/35">LIVE</span>
-      </div>
-      <div className="relative aspect-[16/10] overflow-hidden bg-[#081326]">
-        <Image
-          src={project.image}
-          alt={t(`portfolio.projects.${slug}.previewAlt`)}
-          fill
-          className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.015]"
-          sizes="(max-width: 768px) 100vw, 70vw"
-        />
+    <div className="relative isolate">
+      {/* Resplandor con el color propio de cada proyecto, muy suave. */}
+      <div
+        className={`absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br ${project.tone} opacity-25 blur-2xl transition-opacity duration-500 group-hover:opacity-40`}
+        aria-hidden
+      />
+      <div className="project-browser bg-night">
+        <div className="project-browser-bar">
+          <span className="bg-[#ff6159]" />
+          <span className="bg-[#ffbd2e]" />
+          <span className="bg-[#28c941]" />
+          <div className="project-url">{new URL(project.url).hostname}</div>
+          <span className="ml-auto font-mono text-[10px] tracking-[0.18em] text-gold-light/60">LIVE</span>
+        </div>
+        <div className="relative aspect-[16/10] overflow-hidden rounded-[0.55rem] bg-[#081326]">
+          <Image
+            src={project.image}
+            alt={t(`portfolio.projects.${slug}.previewAlt`)}
+            fill
+            className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.015]"
+            sizes="(max-width: 768px) 100vw, 70vw"
+          />
+        </div>
       </div>
     </div>
   );
@@ -50,30 +57,33 @@ function ProjectCard({ slug, index }: { slug: ProjectSlug; index: number }) {
 
   return (
     <article
-      className="group project-slide rounded-[1.25rem] border border-[#0a2044]/10 bg-white p-3 shadow-[0_18px_50px_rgba(7,26,56,.08)] lg:grid lg:grid-cols-[1.35fr_.65fr] lg:items-center lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none"
+      className="group project-slide xm-card p-3 lg:grid lg:grid-cols-[1.35fr_.65fr] lg:items-center lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none"
       style={{ width: `${100 / PROJECT_SLUGS.length}%`, flexBasis: `${100 / PROJECT_SLUGS.length}%` }}
     >
       <ProjectPreview slug={slug} />
       <div className="mt-6 px-1 pb-2 lg:mt-0 lg:px-0 lg:pb-0 lg:pl-10">
-        <div className="mb-3 flex items-center gap-3">
-          <span className="font-mono text-xs text-[#075cf6]">{String(index + 1).padStart(2, '0')}</span>
-          <span className="border-b border-[#075cf6]/30 pb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#52657c]">
+        <div className="mb-4 flex items-center gap-3">
+          <span className="font-display text-3xl font-light italic leading-none text-gold-deep">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span className="h-px w-8 bg-gold" aria-hidden />
+          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-soft">
             {t(`portfolio.projects.${slug}.stack`)}
           </span>
         </div>
-        <h3 className="text-[2rem] font-semibold leading-[1.02] tracking-[-0.045em] text-[#071a38] sm:text-3xl lg:text-5xl">
+        <h3 className="xm-display text-[2.1rem] text-ink sm:text-4xl lg:text-[3.4rem]">
           {t(`portfolio.projects.${slug}.title`)}
         </h3>
-        <p className="mt-3 max-w-xl text-sm leading-6 text-[#52657c] md:text-base">
+        <p className="mt-4 max-w-xl text-sm leading-6 text-ink-soft md:text-base md:leading-7">
           {t(`portfolio.projects.${slug}.description`)}
         </p>
         <a
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#075cf6] transition-colors hover:text-[#071a38] md:mt-7"
+          className="xm-btn xm-btn-outline mt-6 min-h-11! px-5! md:mt-8"
         >
-          {t('portfolio.visitSite')} <ArrowUpRight className="size-4" aria-hidden />
+          {t('portfolio.visitSite')} <ArrowUpRight className="size-4 text-gold-deep" aria-hidden />
         </a>
       </div>
     </article>
@@ -93,19 +103,19 @@ export function PortfolioSection() {
     <section
       ref={container}
       id="portfolio"
-      className="project-scroll scroll-mt-20 bg-[#f6f8fb] text-[#071a38]"
+      className="project-scroll scroll-mt-20 bg-cream text-ink"
       style={{ position: 'relative' }}
     >
       <div className="project-sticky">
         <div className="section-shell flex h-full flex-col py-14 md:py-14">
           <div className="mb-6 grid gap-4 md:grid-cols-[1fr_0.68fr] md:items-end">
             <div>
-              <p className="section-kicker mb-3">{t('portfolio.kicker')}</p>
-              <h2 className="max-w-3xl text-[2.25rem] font-semibold leading-[1.03] tracking-[-0.045em] text-balance sm:text-4xl md:text-5xl">
+              <p className="xm-eyebrow mb-4">{t('portfolio.kicker')}</p>
+              <h2 className="xm-display max-w-3xl text-[2.3rem] sm:text-4xl md:text-[3.4rem]">
                 {t('portfolio.title')}
               </h2>
             </div>
-            <p className="max-w-xl text-sm leading-6 text-[#52657c] md:justify-self-end md:text-base">
+            <p className="max-w-xl text-sm leading-6 text-ink-soft md:justify-self-end md:text-base">
               {t('portfolio.subtitle')}
             </p>
           </div>
@@ -126,13 +136,13 @@ export function PortfolioSection() {
           </div>
 
           <div className="mt-auto flex items-center gap-3 pt-7 sm:gap-4">
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#60728a]">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-soft">
               {t('portfolio.scrollHint')}
             </span>
-            <div className="hidden h-px flex-1 overflow-hidden bg-[#0a2044]/12 md:block">
-              <motion.div className="h-full origin-left bg-[#075cf6]" style={{ scaleX: progress }} />
+            <div className="hidden h-px flex-1 overflow-hidden bg-line md:block">
+              <motion.div className="h-full origin-left bg-gradient-to-r from-gold-deep to-gold" style={{ scaleX: progress }} />
             </div>
-            <span className="font-mono text-[10px] text-[#60728a]">06 / 06</span>
+            <span className="font-mono text-[10px] text-ink-soft">06 / 06</span>
           </div>
         </div>
       </div>
