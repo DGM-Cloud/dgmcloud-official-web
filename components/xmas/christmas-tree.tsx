@@ -34,11 +34,17 @@ function lightPosition(tier: Tier, v: number, h: number) {
 }
 
 /**
- * Árbol de línea fina en oro, pensado como pieza focal sobria. Decorativo.
+ * Árbol de línea fina en oro. El viewBox deja margen generoso arriba
+ * para que el brillo de la estrella se desvanezca sin tocar el borde.
  */
 export function ChristmasTree({ className = '' }: ChristmasTreeProps) {
   return (
-    <svg viewBox="0 0 400 520" className={className} aria-hidden focusable="false">
+    <svg
+      viewBox="-100 -160 600 760"
+      className={`overflow-visible ${className}`}
+      aria-hidden
+      focusable="false"
+    >
       <defs>
         <linearGradient id="xm-tree-stroke" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#f4e4b4" />
@@ -48,8 +54,10 @@ export function ChristmasTree({ className = '' }: ChristmasTreeProps) {
           <stop offset="0%" stopColor="#17503f" stopOpacity="0.5" />
           <stop offset="100%" stopColor="#0e3a30" stopOpacity="0.08" />
         </linearGradient>
-        <radialGradient id="xm-tree-halo" cx="50%" cy="30%" r="52%">
-          <stop offset="0%" stopColor="#c9a45c" stopOpacity="0.26" />
+        <radialGradient id="xm-tree-star-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#fff6d6" stopOpacity="0.95" />
+          <stop offset="35%" stopColor="#ecd9a8" stopOpacity="0.34" />
+          <stop offset="70%" stopColor="#c9a45c" stopOpacity="0.08" />
           <stop offset="100%" stopColor="#c9a45c" stopOpacity="0" />
         </radialGradient>
         <radialGradient id="xm-tree-light">
@@ -58,7 +66,8 @@ export function ChristmasTree({ className = '' }: ChristmasTreeProps) {
         </radialGradient>
       </defs>
 
-      <rect x="0" y="0" width="400" height="520" fill="url(#xm-tree-halo)" />
+      {/* Brillo de la estrella: r=88 → y=-38; el viewBox empieza en -160. */}
+      <circle cx="200" cy="50" r="88" fill="url(#xm-tree-star-glow)" />
 
       {/* Tronco */}
       <rect x="187" y="428" width="26" height="46" rx="2" fill="none" stroke="url(#xm-tree-stroke)" strokeWidth="1.2" />
@@ -105,7 +114,7 @@ export function ChristmasTree({ className = '' }: ChristmasTreeProps) {
 
       {/* Estrella */}
       <g className="xm-twinkle" style={{ animationDuration: '4.6s' }}>
-        <circle cx="200" cy="50" r="30" fill="url(#xm-tree-light)" opacity="0.7" />
+        <circle cx="200" cy="50" r="28" fill="url(#xm-tree-light)" opacity="0.7" />
         <path
           d="M200 22 L206 44 L228 50 L206 56 L200 78 L194 56 L172 50 L194 44 Z"
           fill="#f4e4b4"
