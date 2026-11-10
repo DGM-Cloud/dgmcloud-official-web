@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { useTranslations } from '@/lib/i18n/locale-context';
 
 const CAPABILITY_KEYS = ['capability1', 'capability2', 'capability3'] as const;
-const PATH_KEYS = ['pathProblem', 'pathStrategy', 'pathSolution', 'pathImpact'] as const;
 
 export function Hero() {
   const { t } = useTranslations();
@@ -13,7 +12,7 @@ export function Hero() {
 
   return (
     <section id="top" className="relative isolate overflow-hidden border-b border-[#0a2044]/10 bg-white text-[#071a38]">
-      <div className="hero-shell grid gap-9 py-10 sm:gap-12 sm:py-14 md:py-18 lg:min-h-[calc(100svh-4.75rem)] lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-20 lg:py-20">
+      <div className="hero-shell grid gap-9 py-10 sm:gap-12 sm:py-14 md:py-18 lg:min-h-[calc(100svh-4.75rem)] lg:items-center lg:py-20">
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,38 +50,7 @@ export function Hero() {
           </ul>
         </motion.div>
 
-        <motion.aside
-          initial={reduce ? false : { opacity: 0, x: 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.62, delay: reduce ? 0 : 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-1 sm:mt-0"
-          aria-label={t('hero.pathAria')}
-        >
-          <div className="absolute -inset-4 -z-10 hidden rounded-[2.5rem] border border-[#075cf6]/10 bg-white/70 sm:block lg:-inset-6" aria-hidden />
-          <div className="overflow-hidden rounded-[1.25rem] bg-[#071a38] text-white shadow-[0_24px_60px_rgba(7,26,56,.16)] sm:rounded-[1.75rem] sm:shadow-[0_30px_80px_rgba(7,26,56,.18)]">
-            <div className="flex items-center justify-between border-b border-white/12 px-4 py-4 sm:px-6 sm:py-5">
-              <p className="text-[0.63rem] font-semibold uppercase tracking-[0.17em] text-[#8bc0ff]">{t('hero.pathKicker')}</p>
-              <span className="size-2 rounded-full bg-[#4dd9a8] shadow-[0_0_0_5px_rgba(77,217,168,.12)]" aria-hidden />
-            </div>
-            <ol className="px-4 sm:px-6 md:px-8">
-              {PATH_KEYS.map((key, index) => (
-                <li key={key} className="grid grid-cols-[1.75rem_1fr] gap-3 border-b border-white/12 py-4 last:border-b-0 sm:grid-cols-[2.5rem_1fr] sm:gap-4 sm:py-6">
-                  <span className="font-mono text-[0.65rem] text-[#67b0ff]">0{index + 1}</span>
-                  <div>
-                    <p className="text-base font-semibold tracking-[-0.02em] sm:text-lg">{t(`hero.${key}`)}</p>
-                    <p className="mt-1 text-xs leading-5 text-blue-100/55 sm:text-sm sm:leading-6">{t(`hero.${key}Body`)}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            <a href="#contact" className="group flex min-h-14 items-center justify-between bg-[#075cf6] px-4 py-4 text-sm font-semibold sm:px-6 sm:py-5 md:px-8">
-              {t('hero.pathCta')}
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
-            </a>
-          </div>
-        </motion.aside>
-
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#0a2044]/12 pt-5 lg:col-span-2">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#0a2044]/12 pt-5">
           <p className="font-mono text-[0.59rem] uppercase tracking-[0.18em] text-[#60728a]">DGM Cloud · Lima, Perú</p>
           <a href="#portfolio" className="flex items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[#075cf6] transition-colors hover:text-[#071a38]">
             {t('hero.scrollHint')}
