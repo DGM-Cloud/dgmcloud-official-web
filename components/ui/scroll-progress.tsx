@@ -13,7 +13,7 @@ export const ScrollProgressBar = memo(function ScrollProgressBar() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-50 h-0.5 w-full origin-left bg-primary"
+      className="pointer-events-none fixed left-0 top-0 z-50 h-0.5 w-full origin-left bg-gradient-to-r from-gold-deep via-gold to-gold-light"
       style={{ scaleX }}
     />
   );

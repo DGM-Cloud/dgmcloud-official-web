@@ -330,6 +330,11 @@ export const dictionaries = {
       socialLinkedin: 'LinkedIn',
       rights: '© 2026 DGM Cloud. All rights reserved.',
     },
+    season: {
+      badge: 'Holiday season',
+      greeting: 'Happy holidays',
+      closing: 'From all of us at DGM Cloud, happy holidays and a great close to the year.',
+    },
     seo: {
       title: 'DGM Cloud | Digital transformation',
       description:
@@ -663,6 +668,11 @@ export const dictionaries = {
       socialGithub: 'GitHub',
       socialLinkedin: 'LinkedIn',
       rights: '© 2026 DGM Cloud. Todos los derechos reservados.',
+    },
+    season: {
+      badge: 'Temporada navideña',
+      greeting: 'Felices fiestas',
+      closing: 'Desde DGM Cloud les deseamos felices fiestas y un excelente cierre de año.',
     },
     seo: {
       title: 'DGM Cloud | Transformación digital',
