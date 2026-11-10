@@ -1,58 +1,88 @@
 'use client';
 
-import { ArrowDownRight, ArrowRight, Check } from 'lucide-react';
+import { ArrowDownRight, ArrowRight } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useTranslations } from '@/lib/i18n/locale-context';
+import { ChristmasTree } from '@/components/xmas/christmas-tree';
+import { Garland } from '@/components/xmas/garland';
+import { Ornament } from '@/components/xmas/ornament';
+import { SnowField } from '@/components/xmas/snow-field';
 
 const CAPABILITY_KEYS = ['capability1', 'capability2', 'capability3'] as const;
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   const { t } = useTranslations();
   const reduce = useReducedMotion();
 
   return (
-    <section id="top" className="relative isolate overflow-hidden border-b border-[#0a2044]/10 bg-white text-[#071a38]">
-      <div className="hero-shell grid gap-9 py-10 sm:gap-12 sm:py-14 md:py-18 lg:min-h-[calc(100svh-4.75rem)] lg:items-center lg:py-20">
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className="flex max-w-[32rem] items-center gap-2.5 text-[0.62rem] font-semibold uppercase leading-5 tracking-[0.15em] text-[#075cf6] sm:gap-3 sm:text-[0.68rem] sm:tracking-[0.18em]">
-            <span className="size-2 rounded-full bg-[#075cf6]" aria-hidden />
-            {t('hero.eyebrow')}
-          </p>
+    <section id="top" className="xm-night-surface overflow-hidden border-b border-gold/25">
+      <SnowField />
+      <Garland className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-12 w-full opacity-90 sm:h-14" />
 
-          <h1 className="mt-5 max-w-[11.5ch] text-[clamp(2.75rem,12.5vw,4.2rem)] font-[560] leading-[0.94] tracking-[-0.06em] text-balance sm:mt-7 lg:max-w-[12ch] lg:text-[clamp(5rem,6.5vw,7.4rem)] lg:leading-[0.91] lg:tracking-[-0.07em]">
+      {/* Adornos colgantes: solo en pantallas amplias, para no competir con el texto. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto hidden h-full max-w-7xl lg:block" aria-hidden>
+        <Ornament tone="gold" size={34} thread={70} className="xm-sway absolute left-[56%] top-0 opacity-90" style={{ animationDelay: '-1s' }} />
+        <Ornament tone="cream" size={26} thread={34} className="xm-sway absolute left-[60%] top-0 opacity-80" style={{ animationDelay: '-3s' }} />
+        <Ornament tone="pine" size={40} thread={104} className="xm-sway absolute left-[93%] top-0 opacity-90" style={{ animationDelay: '-2s' }} />
+      </div>
+
+      <div className="hero-shell grid gap-10 py-14 sm:py-20 lg:min-h-[calc(100svh-6.75rem)] lg:grid-cols-[1.2fr_.8fr] lg:items-center lg:gap-10 lg:py-24">
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease }}
+          className="relative"
+        >
+          <p className="xm-eyebrow xm-eyebrow-light max-w-[34rem]">{t('hero.eyebrow')}</p>
+
+          <h1 className="xm-display mt-6 text-[clamp(2.9rem,10.5vw,4.4rem)] text-cream sm:mt-8 lg:text-[clamp(4.2rem,6.4vw,6.9rem)] lg:leading-[0.98]">
             {t('hero.titleLead')}{' '}
-            <span className="text-[#075cf6]">{t('hero.titleFinish')}</span>
+            <em className="xm-gold-text pr-[0.06em]">{t('hero.titleFinish')}</em>
           </h1>
 
-          <p className="mt-5 max-w-2xl text-[0.95rem] leading-6 text-[#40536c] sm:mt-7 sm:text-base sm:leading-7 md:text-lg md:leading-8">{t('hero.subtitle')}</p>
+          <p className="mt-6 max-w-xl text-[0.98rem] leading-7 text-cream/72 sm:mt-8 md:text-lg md:leading-8">{t('hero.subtitle')}</p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
-            <a href="#contact" className="group inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full bg-[#075cf6] px-5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#064dcc] hover:shadow-[0_14px_35px_rgba(7,92,246,.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6] focus-visible:ring-offset-2 sm:min-h-13 sm:w-auto sm:px-7">
+          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap">
+            <a href="#contact" className="xm-btn xm-btn-gold group w-full sm:w-auto">
               {t('hero.ctaPrimary')}
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
             </a>
-            <a href="#portfolio" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[#0a2044]/20 bg-white px-5 text-sm font-semibold text-[#071a38] transition-colors hover:border-[#075cf6] hover:text-[#075cf6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075cf6] sm:min-h-13 sm:w-auto sm:px-7">
+            <a href="#portfolio" className="xm-btn xm-btn-outline-light w-full sm:w-auto">
               {t('hero.ctaProjects')}
             </a>
           </div>
 
-          <ul className="mt-7 grid gap-3 border-t border-[#0a2044]/12 pt-5 min-[430px]:flex min-[430px]:flex-wrap min-[430px]:gap-x-6 sm:mt-9 sm:pt-6" aria-label={t('hero.capabilitiesLabel')}>
+          <ul
+            className="mt-10 grid gap-3 border-t border-gold/25 pt-6 min-[430px]:flex min-[430px]:flex-wrap min-[430px]:gap-x-8 sm:mt-12"
+            aria-label={t('hero.capabilitiesLabel')}
+          >
             {CAPABILITY_KEYS.map((key) => (
-              <li key={key} className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-[#40536c]">
-                <Check className="size-3.5 text-[#075cf6]" aria-hidden />
+              <li key={key} className="flex items-center gap-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-cream/70">
+                <span className="xm-sparkle size-2.5 text-gold" aria-hidden />
                 {t(`hero.${key}`)}
               </li>
             ))}
           </ul>
         </motion.div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#0a2044]/12 pt-5">
-          <p className="font-mono text-[0.59rem] uppercase tracking-[0.18em] text-[#60728a]">DGM Cloud · Lima, Perú</p>
-          <a href="#portfolio" className="flex items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[#075cf6] transition-colors hover:text-[#071a38]">
+        <motion.div
+          initial={reduce ? false : { opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: reduce ? 0 : 0.15, ease }}
+          className="relative hidden justify-self-center lg:block"
+          aria-hidden
+        >
+          <ChristmasTree className="w-[min(100%,29rem)] drop-shadow-[0_30px_60px_rgba(0,0,0,0.35)]" />
+        </motion.div>
+
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-gold/25 pt-5 lg:col-span-2">
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-cream/55">DGM Cloud · Lima, Perú</p>
+          <a
+            href="#portfolio"
+            className="flex items-center gap-2 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-gold-light transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+          >
             {t('hero.scrollHint')}
             <ArrowDownRight className="size-4" aria-hidden />
           </a>

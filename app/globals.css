@@ -1216,6 +1216,11 @@
   }
 
   .xm-twinkle { animation: xm-twinkle 3.4s ease-in-out infinite; }
+
+  .xm-sway {
+    transform-origin: 50% 0;
+    animation: xm-sway 6.5s ease-in-out infinite;
+  }
 }
 
 @keyframes xm-twinkle {
