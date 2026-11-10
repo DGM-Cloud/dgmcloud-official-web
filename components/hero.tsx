@@ -17,15 +17,16 @@ export function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="top" className="xm-night-surface overflow-hidden border-b border-gold/25">
-      <SnowField />
-      <Garland className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-12 w-full opacity-90 sm:h-14" />
-
-      {/* Adornos colgantes: solo en pantallas amplias, para no competir con el texto. */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto hidden h-full max-w-7xl lg:block" aria-hidden>
-        <Ornament tone="gold" size={34} thread={70} className="xm-sway absolute left-[56%] top-0 opacity-90" style={{ animationDelay: '-1s' }} />
-        <Ornament tone="cream" size={26} thread={34} className="xm-sway absolute left-[60%] top-0 opacity-80" style={{ animationDelay: '-3s' }} />
-        <Ornament tone="pine" size={40} thread={104} className="xm-sway absolute left-[93%] top-0 opacity-90" style={{ animationDelay: '-2s' }} />
+    <section id="top" className="xm-night-surface border-b border-gold/25">
+      {/* Capa decorativa recortada: la sección queda sin overflow para no cortar el resplandor del árbol. */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
+        <SnowField />
+        <Garland className="absolute inset-x-0 top-0 h-12 w-full opacity-90 sm:h-14" />
+        <div className="absolute inset-x-0 top-0 mx-auto hidden h-full max-w-7xl lg:block">
+          <Ornament tone="gold" size={34} thread={70} className="xm-sway absolute left-[56%] top-0 opacity-90" style={{ animationDelay: '-1s' }} />
+          <Ornament tone="cream" size={26} thread={34} className="xm-sway absolute left-[60%] top-0 opacity-80" style={{ animationDelay: '-3s' }} />
+          <Ornament tone="pine" size={40} thread={104} className="xm-sway absolute left-[93%] top-0 opacity-90" style={{ animationDelay: '-2s' }} />
+        </div>
       </div>
 
       <div className="hero-shell grid gap-10 py-14 sm:py-20 lg:min-h-[calc(100svh-6.75rem)] lg:grid-cols-[1.2fr_.8fr] lg:items-center lg:gap-10 lg:py-24">
@@ -71,10 +72,12 @@ export function Hero() {
           initial={reduce ? false : { opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: reduce ? 0 : 0.15, ease }}
-          className="relative hidden justify-self-center lg:block"
+          className="relative hidden justify-self-center overflow-visible lg:block"
           aria-hidden
         >
-          <ChristmasTree className="w-[min(100%,29rem)] drop-shadow-[0_30px_60px_rgba(0,0,0,0.35)]" />
+          {/* Resplandor en CSS, fuera del SVG, para que no lo recorte ningún filtro. */}
+          <div className="pointer-events-none absolute left-1/2 top-[-6%] h-[78%] w-[88%] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_50%_18%,rgba(255,246,214,0.55)_0%,rgba(201,164,92,0.28)_28%,rgba(201,164,92,0.08)_52%,transparent_72%)] blur-3xl" />
+          <ChristmasTree className="relative w-[min(100%,32rem)]" />
         </motion.div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-gold/25 pt-5 lg:col-span-2">
