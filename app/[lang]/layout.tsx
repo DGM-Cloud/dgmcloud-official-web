@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { notFound } from 'next/navigation'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Fraunces, Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ScrollProgressBar } from '@/components/ui/scroll-progress'
 import { AppProviders } from '@/components/app-providers'
@@ -20,10 +20,19 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
 })
 
+/** Serif de display para titulares de la temporada. */
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
+  display: 'swap',
+})
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#ffffff',
+  themeColor: '#fbf7ef',
 }
 
 export const dynamicParams = false
@@ -85,7 +94,7 @@ export default async function RootLayout({
   if (!isLocale(lang)) notFound()
 
   return (
-    <html lang={lang} className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={lang} className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable}`}>
       <body className="font-sans min-h-[100dvh] bg-background antialiased text-foreground">
         <AppProviders locale={lang}>
           <JsonLd locale={lang} />

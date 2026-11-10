@@ -2,33 +2,64 @@
 @import 'tw-animate-css';
 
 :root {
-  --brand-accent-rgb: 0 115 252;
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #0073fc;
-  --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --muted: #f8fafc;
-  --muted-foreground: #475569;
-  --accent: #eff6ff;
-  --accent-foreground: #0f172a;
-  --destructive: #dc2626;
+  /* Paleta de temporada: medianoche, pino, oro y crema. Sobria, no festiva en exceso. */
+  --xm-night: #06142a;
+  --xm-night-2: #0a2347;
+  --xm-night-3: #123566;
+  --xm-pine: #0e3a30;
+  --xm-pine-2: #17503f;
+  --xm-gold: #c9a45c;
+  --xm-gold-light: #ecd9a8;
+  --xm-gold-deep: #8a6a24;
+  --xm-cream: #fbf7ef;
+  --xm-cream-2: #f4ecdc;
+  --xm-berry: #a3243b;
+  --xm-ink: #0b1d38;
+  --xm-ink-soft: #4b5b70;
+  --xm-line: #e4d9c0;
+
+  --brand-accent-rgb: 201 164 92;
+  --background: var(--xm-cream);
+  --foreground: var(--xm-ink);
+  --card: #fffdf8;
+  --card-foreground: var(--xm-ink);
+  --popover: #fffdf8;
+  --popover-foreground: var(--xm-ink);
+  --primary: #0b2a52;
+  --primary-foreground: #fbf7ef;
+  --secondary: var(--xm-cream-2);
+  --secondary-foreground: var(--xm-ink);
+  --muted: var(--xm-cream-2);
+  --muted-foreground: #55627a;
+  --accent: var(--xm-cream-2);
+  --accent-foreground: var(--xm-ink);
+  --destructive: #b42318;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #0073fc;
-  --primary-hover: #0066e0;
+  --border: var(--xm-line);
+  --input: #d9ccae;
+  --ring: var(--xm-gold-deep);
+  --primary-hover: #071f3f;
   --radius: 0.75rem;
 }
 
 @theme inline {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-fraunces), 'Iowan Old Style', Georgia, serif;
+  --color-night: var(--xm-night);
+  --color-night-2: var(--xm-night-2);
+  --color-night-3: var(--xm-night-3);
+  --color-pine: var(--xm-pine);
+  --color-pine-2: var(--xm-pine-2);
+  --color-gold: var(--xm-gold);
+  --color-gold-light: var(--xm-gold-light);
+  --color-gold-deep: var(--xm-gold-deep);
+  --color-cream: var(--xm-cream);
+  --color-cream-2: var(--xm-cream-2);
+  --color-berry: var(--xm-berry);
+  --color-ink: var(--xm-ink);
+  --color-ink-soft: var(--xm-ink-soft);
+  --color-line: var(--xm-line);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -995,4 +1026,214 @@
   .tech-marquee-track {
     animation: none;
   }
+}
+
+/* ==========================================================================
+   Temporada de Navidad — sistema de diseño compartido
+   ========================================================================== */
+
+@layer components {
+  .xm-display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 380;
+    letter-spacing: -0.028em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .xm-display em {
+    font-style: italic;
+    font-weight: 340;
+    letter-spacing: -0.02em;
+  }
+
+  /* Destello de cuatro puntas, usado como viñeta en toda la web. */
+  .xm-sparkle {
+    display: inline-block;
+    width: 0.78em;
+    height: 0.78em;
+    flex: 0 0 auto;
+    background: currentColor;
+    clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  }
+
+  .xm-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--xm-gold-deep);
+    font-size: 0.7rem;
+    font-weight: 650;
+    letter-spacing: 0.2em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .xm-eyebrow::before {
+    content: '';
+    width: 0.62rem;
+    height: 0.62rem;
+    flex: 0 0 auto;
+    background: currentColor;
+    clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  }
+
+  .xm-eyebrow-light { color: var(--xm-gold-light); }
+
+  /* Filete dorado con destello central. */
+  .xm-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--xm-gold);
+  }
+
+  .xm-rule::before,
+  .xm-rule::after {
+    content: '';
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, transparent, currentColor 40%, currentColor 60%, transparent);
+    opacity: 0.55;
+  }
+
+  .xm-hairline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--xm-gold) 20%, var(--xm-gold) 80%, transparent);
+    opacity: 0.5;
+  }
+
+  .xm-gold-text {
+    color: transparent;
+    background: linear-gradient(105deg, #f4e4b4 0%, #d8b66c 38%, #b88f3e 70%, #e6cf98 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .xm-btn {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border-radius: 9999px;
+    padding-inline: 1.6rem;
+    font-size: 0.875rem;
+    font-weight: 620;
+    letter-spacing: 0.005em;
+    transition: transform 200ms ease, background-color 200ms ease, border-color 200ms ease,
+      color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .xm-btn:focus-visible {
+    outline: 2px solid var(--xm-gold);
+    outline-offset: 3px;
+  }
+
+  .xm-btn:hover { transform: translateY(-2px); }
+
+  /* Oro sobre fondos oscuros. */
+  .xm-btn-gold {
+    color: var(--xm-night);
+    background: linear-gradient(180deg, #efdca6 0%, #d3ae63 100%);
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.55) inset, 0 14px 32px rgb(201 164 92 / 0.28);
+  }
+  .xm-btn-gold:hover {
+    background: linear-gradient(180deg, #f6e6b8 0%, #dcb96f 100%);
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset, 0 18px 40px rgb(201 164 92 / 0.38);
+  }
+
+  /* Medianoche sobre fondos claros. */
+  .xm-btn-night {
+    color: var(--xm-cream);
+    background: var(--xm-night);
+    box-shadow: 0 14px 30px rgb(6 20 42 / 0.22);
+  }
+  .xm-btn-night:hover {
+    background: var(--xm-night-2);
+    box-shadow: 0 18px 38px rgb(6 20 42 / 0.3);
+  }
+
+  .xm-btn-outline {
+    color: var(--xm-ink);
+    border: 1px solid rgb(11 29 56 / 0.22);
+    background: rgb(255 253 248 / 0.6);
+  }
+  .xm-btn-outline:hover {
+    border-color: var(--xm-gold-deep);
+    color: var(--xm-gold-deep);
+    background: #fffdf8;
+  }
+
+  .xm-btn-outline-light {
+    color: rgb(251 247 239 / 0.9);
+    border: 1px solid rgb(236 217 168 / 0.3);
+    background: rgb(255 255 255 / 0.04);
+  }
+  .xm-btn-outline-light:hover {
+    color: #fff;
+    border-color: rgb(236 217 168 / 0.7);
+    background: rgb(236 217 168 / 0.08);
+  }
+
+  /* Superficie nocturna con halo cálido, base de las secciones oscuras. */
+  .xm-night-surface {
+    position: relative;
+    isolation: isolate;
+    color: var(--xm-cream);
+    background:
+      radial-gradient(ellipse 60% 55% at 78% 8%, rgb(201 164 92 / 0.13), transparent 62%),
+      radial-gradient(ellipse 50% 50% at 8% 100%, rgb(23 80 63 / 0.4), transparent 65%),
+      linear-gradient(165deg, #0a2347 0%, #071b38 48%, #06142a 100%);
+  }
+
+  /* Superficie de pino, para contraste ocasional. */
+  .xm-pine-surface {
+    position: relative;
+    isolation: isolate;
+    color: var(--xm-cream);
+    background:
+      radial-gradient(ellipse 55% 60% at 85% 0%, rgb(201 164 92 / 0.14), transparent 60%),
+      linear-gradient(160deg, #17503f 0%, #0e3a30 55%, #0a2a24 100%);
+  }
+
+  /* Tarjeta clara con marco de oro muy fino. */
+  .xm-card {
+    border: 1px solid var(--xm-line);
+    border-radius: 1.25rem;
+    background: #fffdf8;
+    box-shadow: 0 1px 0 rgb(255 255 255) inset, 0 18px 50px rgb(11 29 56 / 0.06);
+  }
+
+  .xm-snow-layer {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .xm-twinkle { animation: xm-twinkle 3.4s ease-in-out infinite; }
+}
+
+@keyframes xm-twinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes xm-sway {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+@keyframes xm-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xm-twinkle { animation: none; opacity: 0.85; }
+  .xm-sway { animation: none !important; }
 }
