@@ -835,6 +835,10 @@
   mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
 }
 
+.tech-marquee-mask li + li {
+  border-left: 1px solid rgb(138 106 36 / 0.14);
+}
+
 .tech-marquee-track {
   display: flex;
   width: max-content;
