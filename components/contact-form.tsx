@@ -14,6 +14,8 @@ import {
   whatsappUrl,
 } from '@/lib/contact-config';
 import { useTranslations } from '@/lib/i18n/locale-context';
+import { Garland } from '@/components/xmas/garland';
+import { SnowField } from '@/components/xmas/snow-field';
 
 const PROJECT_OPTIONS = [
   ['transformation', 'contact.optTransformation'],
@@ -89,16 +91,22 @@ export function ContactForm() {
   };
 
   return (
-    <section id="contact" className="scroll-mt-24 py-16 md:py-28">
-      <div className="section-shell grid grid-cols-1 gap-9 sm:gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+    <section id="contact" className="xm-night-surface scroll-mt-24 overflow-hidden py-16 md:py-28">
+      <SnowField density={0.6} maxParticles={55} />
+      <Garland className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-10 w-full opacity-80 md:h-12" />
+
+      <div className="section-shell grid grid-cols-1 gap-10 pt-4 sm:gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
         <div>
-          <p className="section-kicker mb-3">{t('contact.kicker')}</p>
-          <h2 className="section-title">{t('contact.title')}</h2>
-          <p className="section-lede mt-4">{t('contact.subtitle')}</p>
-          <p className="mt-8 text-sm text-muted-foreground">{t('contact.emailHint')}</p>
+          <p className="xm-eyebrow xm-eyebrow-light mb-5">{t('contact.kicker')}</p>
+          <h2 className="xm-display text-[clamp(2.3rem,9vw,4.4rem)] text-cream">{t('contact.title')}</h2>
+          <p className="mt-6 max-w-lg text-base leading-7 text-cream/70 md:text-lg md:leading-8">{t('contact.subtitle')}</p>
+
+          <div className="xm-hairline mt-9 max-w-xs" aria-hidden />
+
+          <p className="mt-8 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-cream/55">{t('contact.emailHint')}</p>
           <a
             href={`mailto:${SITE_CONTACT_EMAIL}`}
-            className="mt-1 inline-block text-base font-semibold text-primary hover:underline"
+            className="mt-2 inline-block break-all font-display text-2xl font-light text-gold-light transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:text-3xl"
           >
             {SITE_CONTACT_EMAIL}
           </a>
@@ -107,7 +115,7 @@ export function ContactForm() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${t('contact.whatsappAria')}: ${SITE_WHATSAPP_DISPLAY}`}
-            className="mt-3 flex w-fit items-center gap-2 text-base font-semibold text-foreground hover:text-[#1da851] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="mt-5 flex w-fit items-center gap-3 rounded-full border border-gold/30 bg-white/[0.04] py-2 pl-3 pr-5 text-base font-semibold text-cream transition-colors hover:border-gold/70 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
           >
             <WhatsappIcon className="size-5 shrink-0 text-[#25d366]" />
             {SITE_WHATSAPP_DISPLAY}
@@ -116,7 +124,7 @@ export function ContactForm() {
 
         <form
           onSubmit={handleSubmit}
-          className="space-y-5 rounded-[1.25rem] border border-border bg-card p-5 sm:p-6 md:rounded-xl md:p-8"
+          className="relative space-y-5 rounded-[1.25rem] border border-gold/40 bg-card p-5 text-card-foreground shadow-[0_30px_80px_rgba(0,0,0,0.35)] sm:p-7 md:rounded-[1.5rem] md:p-9"
         >
           <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
             <label htmlFor="contact-website">Website</label>
@@ -242,7 +250,7 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="btn-primary w-full disabled:cursor-not-allowed"
+            className="xm-btn xm-btn-night w-full disabled:cursor-not-allowed disabled:opacity-60"
           >
             {status === 'loading' ? t('contact.sending') : t('contact.submit')}
           </button>
