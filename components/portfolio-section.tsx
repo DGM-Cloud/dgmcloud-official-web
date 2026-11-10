@@ -23,29 +23,22 @@ function ProjectPreview({ slug }: { slug: ProjectSlug }) {
   const project = PROJECTS[slug];
 
   return (
-    <div className="relative isolate">
-      {/* Resplandor con el color propio de cada proyecto, muy suave. */}
-      <div
-        className={`absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br ${project.tone} opacity-25 blur-2xl transition-opacity duration-500 group-hover:opacity-40`}
-        aria-hidden
-      />
-      <div className="project-browser bg-night">
-        <div className="project-browser-bar">
-          <span className="bg-[#ff6159]" />
-          <span className="bg-[#ffbd2e]" />
-          <span className="bg-[#28c941]" />
-          <div className="project-url">{new URL(project.url).hostname}</div>
-          <span className="ml-auto font-mono text-[10px] tracking-[0.18em] text-gold-light/60">LIVE</span>
-        </div>
-        <div className="relative aspect-[16/10] overflow-hidden rounded-[0.55rem] bg-[#081326]">
-          <Image
-            src={project.image}
-            alt={t(`portfolio.projects.${slug}.previewAlt`)}
-            fill
-            className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.015]"
-            sizes="(max-width: 768px) 100vw, 70vw"
-          />
-        </div>
+    <div className={`project-browser bg-gradient-to-br ${project.tone}`}>
+      <div className="project-browser-bar">
+        <span className="bg-[#ff6159]" />
+        <span className="bg-[#ffbd2e]" />
+        <span className="bg-[#28c941]" />
+        <div className="project-url">{new URL(project.url).hostname}</div>
+        <span className="ml-auto font-mono text-[10px] tracking-[0.18em] text-gold-light/60">LIVE</span>
+      </div>
+      <div className="relative aspect-[16/10] overflow-hidden rounded-[0.55rem] bg-[#081326]">
+        <Image
+          src={project.image}
+          alt={t(`portfolio.projects.${slug}.previewAlt`)}
+          fill
+          className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.015]"
+          sizes="(max-width: 768px) 100vw, 70vw"
+        />
       </div>
     </div>
   );

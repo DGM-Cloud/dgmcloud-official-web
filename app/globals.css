@@ -725,6 +725,9 @@
     flex: 1;
     min-height: 0;
     overflow: hidden;
+    /* Aire interno: las sombras del slide viven dentro del recorte del carrusel. */
+    padding-block: 1.25rem;
+    margin-block: -0.25rem;
   }
 
   .project-track {
@@ -747,10 +750,23 @@
 
   .project-browser {
     overflow: hidden;
-    border: 1px solid rgb(201 164 92 / 0.4);
+    border: 1px solid rgb(201 164 92 / 0.45);
     border-radius: 1rem;
     padding: 0.55rem;
-    box-shadow: 0 28px 70px rgb(6 20 42 / 0.26), inset 0 1px rgb(236 217 168 / 0.12);
+    /* Sombra contenida: no usa blur externo que el overflow del track corta. */
+    box-shadow:
+      0 1px 0 rgb(236 217 168 / 0.18) inset,
+      0 18px 40px rgb(6 20 42 / 0.22),
+      0 0 0 1px rgb(201 164 92 / 0.08);
+    transition: box-shadow 320ms ease, border-color 320ms ease;
+  }
+
+  .group:hover .project-browser {
+    border-color: rgb(201 164 92 / 0.7);
+    box-shadow:
+      0 1px 0 rgb(236 217 168 / 0.28) inset,
+      0 22px 48px rgb(6 20 42 / 0.28),
+      0 0 28px rgb(201 164 92 / 0.16);
   }
 
   .project-browser-bar {
